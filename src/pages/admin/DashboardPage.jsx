@@ -12,8 +12,8 @@ export function DashboardPage() {
     return (
         <>
             <h1>Dashboard</h1>
-            <p>Total de Notícias: {noticiasCount && noticiasCount}</p>
-            <p>Total de Eventos: {eventosCount && eventosCount}</p>
+            <p>Total de Notícias: {noticiasCount}</p>
+            <p>Total de Eventos: {eventosCount}</p>
         </>
     );
 }
