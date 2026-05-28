@@ -6,7 +6,7 @@ export function GlobalLayout() {
     return (
         <div>
             <HeaderGlobal />
-            <main>
+            <main className="m-5">
                 <Outlet />
             </main>
             <FooterGlobal />
