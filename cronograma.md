@@ -1,7 +1,6 @@
 ### 26/05
 
 * Criar login
-* Home admin
 
 ---
 
