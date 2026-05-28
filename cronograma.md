@@ -2,7 +2,6 @@
 
 * Criar login
 * Home admin
-* Footer geral
 
 ---
 

@@ -14,10 +14,7 @@ export function HeaderGlobal() {
                 <NavLink to="/eventos">Eventos</NavLink>
                 <NavLink to="/localizacao">Localização</NavLink>
             </nav>
-
-            <nav>
-                <button onClick={() => {navigate("/login")}}>Login</button>
-            </nav>
+        <div className="invisible">Fundação Guia</div>
         </div>
     )
 }
