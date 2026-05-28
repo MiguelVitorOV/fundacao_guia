@@ -5,9 +5,9 @@ export function SidebarAdmin() {
     const navigate = useNavigate()
 
     return (
-        <div className="flex p-5 gap-10 justify-between">
+        <div className="flex flex-col p-5 gap-10 justify-between h-screen">
             <h1>Dashboard</h1>
-            <nav className="flex gap-10">
+            <nav className="flex flex-col gap-10">
                 <NavLink to="/admin">Home</NavLink>
                 <NavLink to="/noticias">Noticias</NavLink>
                 <NavLink to="/vagas">Vagas</NavLink>
@@ -16,7 +16,7 @@ export function SidebarAdmin() {
             </nav>
 
             <nav>
-                <button onClick={() => {navigate("/login")}}>Login</button>
+                <button onClick={() => {navigate("/")}}>Sair</button>
             </nav>
         </div>
     )

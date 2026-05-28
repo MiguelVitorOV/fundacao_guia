@@ -6,7 +6,7 @@ import { VagasPage } from "../pages/VagasPage";
 import { EventosPage } from "../pages/EventosPage";
 import { LocalizacaoPage } from "../pages/LocalizacaoPage";
 
-import { LoginPage } from "../pages/admin/LoginPage";
+import { LoginPage } from "../pages/LoginPage";
 import { DashboardPage } from "../pages/admin/DashboardPage";
 import { GlobalLayout } from "../layouts/GlobalLayout";
 import { AdminLayout } from "../layouts/AdminLayout";

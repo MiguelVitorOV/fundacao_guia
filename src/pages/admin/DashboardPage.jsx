@@ -23,7 +23,7 @@ export function DashboardPage() {
 
     return (
         <>
-            <h1>Dashboard</h1>
+            <h1>Visão Geral</h1>
             <p>Total de Notícias: {noticiasCount}</p>
             <p>Total de Eventos: {eventosCount}</p>
             <p>Total de Vagas: {vagasCount}</p>
