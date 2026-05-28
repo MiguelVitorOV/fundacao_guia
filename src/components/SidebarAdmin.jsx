@@ -9,10 +9,10 @@ export function SidebarAdmin() {
             <h1>Dashboard</h1>
             <nav className="flex flex-col gap-10">
                 <NavLink to="/admin">Home</NavLink>
-                <NavLink to="/noticias">Noticias</NavLink>
-                <NavLink to="/vagas">Vagas</NavLink>
-                <NavLink to="/eventos">Eventos</NavLink>
-                <NavLink to="/localizacao">Localização</NavLink>
+                <NavLink to="/admin/noticias">Noticias</NavLink>
+                <NavLink to="/admin/vagas">Vagas</NavLink>
+                <NavLink to="/admin/eventos">Eventos</NavLink>
+                <NavLink to="/admin/exames">Localização</NavLink>
             </nav>
 
             <nav>
