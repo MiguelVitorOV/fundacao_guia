@@ -1,14 +1,101 @@
+import { useForm } from "../../hooks/useForm"
 export const CreateModalNoticias = ({isOpen, onClose, onConfirm}) => {
     if (!isOpen) return null;
     
+    const [form, handleChange] = useForm({
+        noticia_id_fundacao: "",
+        titulo: "",
+        resumo: "",
+        conteudo: "",
+        data_publicacao: "",
+        tags: "",
+        imagens: "",
+        outros_links: ""
+    })
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        console.log(form)
+        const payload = {
+            ...form,
+            noticia_id_fundacao: Number(form.noticia_id_fundacao),
+            data_publicacao: new Date(form.data_publicacao).getTime(),
+        }
+        console.log("Seu payload" )
+        console.log(payload)
+        onConfirm(payload)
+    }
+
     return (
         <div className="fixed inset-0 z-50 flex bg-black/50 items-center justify-center">
             <div className="flex flex-col justify-between p-5 bg-white items-center gap-5">
-                <h1>{`Criar nova notícia`}</h1>
-                <div className="flex gap-5">
-                    <button onClick={onConfirm}>Confirmar</button>
-                    <button onClick={onClose}>Cancelar</button>
-                </div>
+                <h1>Criar nova notícia</h1>
+                <form onSubmit={handleSubmit} className="flex flex-wrap justify-center gap-5">
+                    <input 
+                    name="noticia_id_fundacao"
+                    value={form.noticia_id_fundacao}
+                    onChange={handleChange}
+                    placeholder="Digite o id da notícia no site da fundação"
+                    type="number"
+                    min={1}
+                    required
+                    />
+                    <input 
+                    name="titulo"
+                    value={form.titulo}
+                    onChange={handleChange}
+                    placeholder="Digite o título da notícia"
+                    type="text"
+                    required
+                    />
+                    <textarea 
+                    name="resumo"
+                    value={form.resumo}
+                    onChange={handleChange}
+                    placeholder="Digite o resumo da notícia"
+                    type="text"
+                    />
+                    <textarea 
+                    name="conteudo"
+                    value={form.conteudo}
+                    onChange={handleChange}
+                    placeholder="Digite o conteúdo da notícia"
+                    required
+                    />
+                    <input 
+                    name="data_publicacao"
+                    value={form.data_publicacao}
+                    onChange={handleChange}
+                    placeholder="Digite a data de publicação"
+                    type="date"
+                    required
+                    />
+                    <input 
+                    name="tags"
+                    value={form.tags}
+                    onChange={handleChange}
+                    placeholder="Digite as tags"
+                    type="text"
+                    />
+                    <input 
+                    name="imagens"
+                    value={form.imagens}
+                    onChange={handleChange}
+                    placeholder="Digite a URL da imagem"
+                    type="text"
+                    />
+                    <input 
+                    name="outros_links"
+                    value={form.outros_links}
+                    onChange={handleChange}
+                    placeholder="Digite links adicionais"
+                    />
+                    
+                    <div className="flex gap-5 justify-center">
+                        <button type="submit">Confirmar</button>
+                        <button onClick={onClose}>Cancelar</button>
+                    </div>
+                </form>
             </div>
         </div>
     )

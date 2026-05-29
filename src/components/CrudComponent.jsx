@@ -1,5 +1,6 @@
 import { useGetData } from "../hooks/useGetData"
 import { useDeleteData } from "../hooks/useDeleteData"
+import { usePostData } from "../hooks/usePostData"
 import {Pencil, Trash, Plus} from "lucide-react"
 import { useState } from "react"
 import { DeleteModal } from "./Modais/DeleteModal"
@@ -8,6 +9,7 @@ import { PopUp } from "./PopUp"
 export function CrudComponent(props) {
     const [item, loading, error, reGetData] = useGetData(props.url)
     const [deleteItem, loadingDelete, errorDelete] = useDeleteData()
+    const [createItem, loadingCreate, errorCreate] = usePostData()
 
     const [deleteModalOpen, setDeleteModalOpen] = useState(false)
     const [createModalOpen, setCreateModalOpen] = useState(false)
@@ -33,14 +35,22 @@ export function CrudComponent(props) {
         setSelectedItem(null)
     }
 
-    const handleOpenDeleteModal = (noticia) => {
-        setSelectedItem(noticia)
+    const handleOpenDeleteModal = (item) => {
+        setSelectedItem(item)
         setDeleteModalOpen(true)
     }
 
-    const handleCreateItem = () => {
-        setCreateModalOpen(false)
-        alert("CRIADO")
+    const handleCreateItem = (payload) => {
+        const body = {...payload}
+        createItem(`${props.deleteUrl}`, payload).then(() => {
+            setPopup({ isOpen: true, sucesso: "Item criado com sucesso" })
+            reGetData()
+            setCreateModalOpen(false)
+        })
+        .catch((err) => {
+            const msgErro = err.response?.data?.mensagem || "Erro ao criar item"
+            setPopup({ isOpen: true, erro: msgErro })
+        })
     }
 
     const handleCloseCreateModal = () => {

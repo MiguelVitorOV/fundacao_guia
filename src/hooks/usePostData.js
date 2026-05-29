@@ -1,13 +1,15 @@
 import { useState } from "react"
 import {api} from "../constants/api"
 
-export const useDeleteData = () => {
+export const usePostData = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
 
-    const deleteData = async (url) =>{
-        setLoading(true);
-        await api.delete(url).then(() => {
+    const postData = async (url, body) =>{
+        setLoading(true)
+        console.log(`Seu body`)
+        console.log(body)
+        await api.post(url, body).then(() => {
             setLoading(false)
         })
         .catch((err) => {
@@ -17,6 +19,6 @@ export const useDeleteData = () => {
         })
     }
 
-    return [deleteData, loading, error]
+    return [postData, loading, error]
 
 }
