@@ -13,12 +13,21 @@ export function AuthProvider({ children }) {
         const token = localStorage.getItem('token')
 
         if (token){
+            try {
             const decodedToken = JSON.parse(atob(token.split('.')[1]))
             const currentTime = Date.now() / 1000;
 
             if (currentTime > decodedToken.exp){
                 logout()
+                setLoading(false) 
+                return
             }
+        } catch (error){
+            console.log("TOKEN ADULTERADO")
+            logout()
+            setLoading(false) 
+            return
+        }
         }
 
         if(user && token){
