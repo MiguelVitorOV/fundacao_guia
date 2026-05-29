@@ -13,6 +13,13 @@ export function AuthProvider({ children }) {
         const user = localStorage.getItem('user')
         const token = localStorage.getItem('token')
 
+        const decodedToken = JSON.parse(atob(token.split('.')[1]))
+        const currentTime = Date.now() / 1000;
+
+        if (currentTime > decodedToken.exp){
+            logout()
+        }
+
         if(user && token){
             setUser(JSON.parse(user))
         }
@@ -36,6 +43,7 @@ export function AuthProvider({ children }) {
             localStorage.setItem('token', response.data.mensagem.replace('Token Gerado: ', '').trim())
             setUser(newUser)
         } catch (err) {
+            setError(err)
             throw err
         }
     }
