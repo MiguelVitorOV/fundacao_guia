@@ -1,15 +1,6 @@
-### 26/05
-
-* Criar login
-
----
-
 ### 29/05
 
 *Fazer /admin/ todos os crud
-*Modal para dupla confirmação de exclusão
-*Mensagens de erros e sucesso com base na resposta da API
-
 ---
 
 ### 02/06

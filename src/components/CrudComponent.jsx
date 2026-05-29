@@ -3,7 +3,7 @@ import { useDeleteData } from "../hooks/useDeleteData"
 import {Pencil, Trash, Plus} from "lucide-react"
 import { useState } from "react"
 import { DeleteModal } from "./Modais/DeleteModal"
-
+import { PopUp } from "./PopUp"
 
 export function CrudComponent(props) {
     const [item, loading, error, reGetData] = useGetData(props.url)
@@ -11,6 +11,7 @@ export function CrudComponent(props) {
 
     const [deleteModalOpen, setDeleteModalOpen] = useState(false)
     const [createModalOpen, setCreateModalOpen] = useState(false)
+    const [popup, setPopup] = useState({ isOpen: false, sucesso: "", erro: "" })
     const [selectedItem, setSelectedItem] = useState(null)
 
     const CreateModal = props.CreateModal
@@ -18,8 +19,12 @@ export function CrudComponent(props) {
     const handleDeleteItem = () => {
         setDeleteModalOpen(false)
         deleteItem(`${props.deleteUrl}/${selectedItem?.id}`).then(() => {
-            console.log("Item deletado com sucesso")
+            setPopup({ isOpen: true, sucesso: "Item deletado com sucesso" })
             reGetData()
+        })
+        .catch((err) => {
+            const msgErro = err.response?.data?.mensagem || "Erro ao deletar item"
+            setPopup({ isOpen: true, erro: msgErro })
         })
     }
 
@@ -81,6 +86,16 @@ export function CrudComponent(props) {
             onClose={handleCloseCreateModal} 
             onConfirm={handleCreateItem} 
             propriedades={props.propriedades} />
+
+            {popup.isOpen && (
+                <PopUp 
+                    sucesso={popup.sucesso} 
+                    erro={popup.erro} 
+                    onClose={() => setPopup({ isOpen: false, sucesso: "", erro: "" })} 
+                />
+            )}
+            
+            
 
         </>
     )
