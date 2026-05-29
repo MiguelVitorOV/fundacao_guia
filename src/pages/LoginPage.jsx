@@ -2,10 +2,14 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router"
 import { useAuth } from "../contexts/AuthContext"
 import { useForm } from "../hooks/useForm"
+import { useState } from "react"
+import { PopUp } from "../components/PopUp"
 
 export function LoginPage() {
     const [form, handleChange] = useForm({email: '', password: ''})
     const navigate = useNavigate()
+
+    const [popup, setPopup] = useState({ isOpen: false, sucesso: "", erro: "" })
     const { login, user } = useAuth()
 
     const handleSubmit = async (e) => {
@@ -17,11 +21,13 @@ export function LoginPage() {
             navigate("/admin")
         } catch (err) {
             const status = err.response?.status
-            const error = err.response?.data?.mensagem || "Erro genérico"
+            const error = err.response?.data?.mensagem || "Erro"
             console.error(error)
 
             if (status === 401 || status === 404){
-                alert("Email ou senha incorretos")
+                setPopup({ isOpen: true, erro: "Dados incorretos" })
+            } else {
+                setPopup({ isOpen: true, erro: error })
             }
         }
     }
@@ -52,6 +58,12 @@ export function LoginPage() {
                 />
                 <button type="submit">Entrar</button>
             </form>
+            {popup.isOpen && (
+                <PopUp 
+                    erro={popup.erro} 
+                    onClose={() => setPopup({ isOpen: false, erro: "" })} 
+                />
+            )}
         </div>
     )
 }
