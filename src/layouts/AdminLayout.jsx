@@ -1,5 +1,5 @@
-import { Outlet } from "react-router";
-import { SidebarAdmin } from "../components/SidebarAdmin";
+import { Outlet } from "react-router"
+import { SidebarAdmin } from "../components/SidebarAdmin"
 
 export function AdminLayout() {
     return (
@@ -9,5 +9,5 @@ export function AdminLayout() {
                 <Outlet />
             </main>
         </div>
-    );
+    )
 }

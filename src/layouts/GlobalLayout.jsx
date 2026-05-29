@@ -1,6 +1,6 @@
-import { Outlet } from "react-router";
-import { HeaderGlobal } from '../components/HeaderGlobal';
-import { FooterGlobal } from '../components/FooterGlobal';
+import { Outlet } from "react-router"
+import { HeaderGlobal } from '../components/HeaderGlobal'
+import { FooterGlobal } from '../components/FooterGlobal'
 
 export function GlobalLayout() {
     return (
@@ -11,5 +11,5 @@ export function GlobalLayout() {
             </main>
             <FooterGlobal />
         </div>
-    );
+    )
 }

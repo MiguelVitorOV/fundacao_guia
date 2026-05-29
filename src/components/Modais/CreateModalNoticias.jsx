@@ -1,11 +1,11 @@
 import { useForm } from "../../hooks/useForm"
 export const CreateModalNoticias = ({isOpen, onClose, onConfirm, itemToEdit}) => {
-    if (!isOpen) return null;
+    if (!isOpen) return null
 
     const formatToDate = (timestamp) => {
-        if(!timestamp) return "";
+        if(!timestamp) return ""
         const date = new Date(Number(timestamp))
-        return date.toISOString().split("T")[0];
+        return date.toISOString().split("T")[0]
     }
     
     const [form, handleChange] = useForm({
@@ -27,12 +27,12 @@ export const CreateModalNoticias = ({isOpen, onClose, onConfirm, itemToEdit}) =>
             data_publicacao: new Date(form.data_publicacao).getTime(),
         }
         if (itemToEdit?.id) {
-            payload.id = itemToEdit.id;
+            payload.id = itemToEdit.id
         }
         onConfirm(payload)
     }
 
-    const isEdit = !!itemToEdit;
+    const isEdit = !!itemToEdit
 
     return (
         <div className="fixed inset-0 z-50 flex bg-black/50 items-center justify-center">
@@ -114,7 +114,7 @@ export const CreateModalNoticias = ({isOpen, onClose, onConfirm, itemToEdit}) =>
 
 
 // export const CreateModal = ({propriedades, isOpen, onClose, onConfirm, itemName = "item"}) => {
-//     if (!isOpen) return null;
+//     if (!isOpen) return null
     
 //     const [form, handleChange] = useForm({propriedades})
 

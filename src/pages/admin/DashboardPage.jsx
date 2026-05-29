@@ -1,4 +1,4 @@
-import { useGetData } from "../../hooks/useGetData";
+import { useGetData } from "../../hooks/useGetData"
 
 export function DashboardPage() {
 
@@ -12,9 +12,9 @@ export function DashboardPage() {
     const vagasCount = dataVagas && dataVagas.body.vagas.length
     let examesCount = 0
 
-    if (dataExames){
+    if (dataExames) {
         for (const bloco of dataExames.body.blocos) {
-            for (const setor of bloco.setores){
+            for (const setor of bloco.setores) {
                 examesCount += setor.exames.length
             }
         }
@@ -28,5 +28,5 @@ export function DashboardPage() {
             <p>Total de Vagas: {vagasCount}</p>
             <p>Total de Exames: {examesCount}</p>
         </>
-    );
+    )
 }

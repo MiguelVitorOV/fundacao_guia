@@ -69,17 +69,17 @@ export function CrudComponent(props) {
     }
 
     const handleOpenEditModal = (item) => {
-        setSelectedItem(item);
-        setCreateModalOpen(true); 
-    };
+        setSelectedItem(item)
+        setCreateModalOpen(true)
+    }
 
     const handleCloseCreateModal = () => {
         setCreateModalOpen(false)
-        setSelectedItem(null);  
+        setSelectedItem(null) 
     }
 
     const handleOpenCreateModal = () => {
-        setSelectedItem(null);  
+        setSelectedItem(null)
         setCreateModalOpen(true)
     }
 

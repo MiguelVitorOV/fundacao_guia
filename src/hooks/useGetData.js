@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import {api} from "../constants/api"
+import { api } from "../constants/api"
 
 export const useGetData = (url) => {
     const [data, setData] = useState(undefined)
@@ -7,17 +7,17 @@ export const useGetData = (url) => {
     const [error, setError] = useState("")
 
     const getData = async () => {
-        setLoading(true);
+        setLoading(true)
         api.get(url).then((res) => {
             setLoading(false)
             setData(res.data)
         })
-        .catch((err) => {
-            setLoading(false)
-            setError(err)
-        })
+            .catch((err) => {
+                setLoading(false)
+                setError(err)
+            })
     }
-    
+
     useEffect(() => {
         getData()
     }, [url])

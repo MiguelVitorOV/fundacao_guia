@@ -1,13 +1,13 @@
-import { useEffect } from "react";
+import { useEffect } from "react"
 
 export function PopUp(props) {
 
      useEffect(() => {
         const timer = setTimeout(() => {
-            props.onClose();
-        }, 3000);
-        return () => clearTimeout(timer);
-    }, [props.onClose]);
+            props.onClose()
+        }, 3000)
+        return () => clearTimeout(timer)
+    }, [props.onClose])
     return (
         <div className="fixed bottom-4 right-4 z-50">
             {props.sucesso && (

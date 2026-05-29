@@ -1,22 +1,22 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route } from "react-router"
 
-import { HomePage } from "../pages/HomePage";
-import { NoticiasPage } from "../pages/NoticiasPage";
-import { VagasPage } from "../pages/VagasPage";
-import { EventosPage } from "../pages/EventosPage";
-import { LocalizacaoPage } from "../pages/LocalizacaoPage";
+import { HomePage } from "../pages/HomePage"
+import { NoticiasPage } from "../pages/NoticiasPage"
+import { VagasPage } from "../pages/VagasPage"
+import { EventosPage } from "../pages/EventosPage"
+import { LocalizacaoPage } from "../pages/LocalizacaoPage"
 
-import { LoginPage } from "../pages/LoginPage";
+import { LoginPage } from "../pages/LoginPage"
 
-import { DashboardPage } from "../pages/admin/DashboardPage";
-import { NoticiasManagePage } from "../pages/admin/NoticiasManagePage";
-import { VagasManagePage } from "../pages/admin/VagasManagePage";
-import { EventosManagePage } from "../pages/admin/EventosManagePage";
-import { ExamesManagePage } from "../pages/admin/ExamesManagePage";
+import { DashboardPage } from "../pages/admin/DashboardPage"
+import { NoticiasManagePage } from "../pages/admin/NoticiasManagePage"
+import { VagasManagePage } from "../pages/admin/VagasManagePage"
+import { EventosManagePage } from "../pages/admin/EventosManagePage"
+import { ExamesManagePage } from "../pages/admin/ExamesManagePage"
 
-import { GlobalLayout } from "../layouts/GlobalLayout";
-import { AdminLayout } from "../layouts/AdminLayout";
-import { ProtectedRoute } from "../components/ProtectedRoute";
+import { GlobalLayout } from "../layouts/GlobalLayout"
+import { AdminLayout } from "../layouts/AdminLayout"
+import { ProtectedRoute } from "../components/ProtectedRoute"
 
 function AppRoutes() {
     return (
@@ -41,7 +41,7 @@ function AppRoutes() {
                 </Route>
             </Route>
         </Routes>
-    );
+    )
 }
 
-export default AppRoutes;
+export default AppRoutes

@@ -1,5 +1,5 @@
-import { api } from "../constants/api";
-import { createContext, useContext, useState, useEffect } from "react";
+import { api } from "../constants/api"
+import { createContext, useContext, useState, useEffect } from "react"
 
 const AuthContext = createContext({})
 
@@ -12,25 +12,25 @@ export function AuthProvider({ children }) {
         const user = localStorage.getItem('user')
         const token = localStorage.getItem('token')
 
-        if (token){
+        if (token) {
             try {
-            const decodedToken = JSON.parse(atob(token.split('.')[1]))
-            const currentTime = Date.now() / 1000;
+                const decodedToken = JSON.parse(atob(token.split('.')[1]))
+                const currentTime = Date.now() / 1000
 
-            if (currentTime > decodedToken.exp){
+                if (currentTime > decodedToken.exp) {
+                    logout()
+                    setLoading(false)
+                    return
+                }
+            } catch (error) {
+                console.log("TOKEN ADULTERADO")
                 logout()
-                setLoading(false) 
+                setLoading(false)
                 return
             }
-        } catch (error){
-            console.log("TOKEN ADULTERADO")
-            logout()
-            setLoading(false) 
-            return
-        }
         }
 
-        if(user && token){
+        if (user && token) {
             setUser(JSON.parse(user))
         }
         setLoading(false)
@@ -44,8 +44,8 @@ export function AuthProvider({ children }) {
             }
 
             const response = await api.post('/loginAdmin', body)
-            
-            const newUser = {email}
+
+            const newUser = { email }
 
             console.log(response)
 
