@@ -6,7 +6,7 @@ import { DeleteModal } from "../../components/Modais/DeleteModal"
 
 
 export function NoticiasManagePage() {
-    const [noticias, loading, error] = useGetData(`/noticias?recentes=900`)
+    const [noticias, loading, error, reGetData] = useGetData(`/noticias?recentes=900`)
     const [excludeModalOpen, setExcludeModalOpen] = useState(false)
     const [deleteNoticia, loadingDelete, errorDelete] = useDeleteData()
 
@@ -40,8 +40,11 @@ export function NoticiasManagePage() {
                 <DeleteModal isOpen={excludeModalOpen} 
                 onClose={() => setExcludeModalOpen(false)} 
                 onConfirm={() => {
-                    setExcludeModalOpen(false);
-                    deleteNoticia(`/adminAcao/noticias/${selectedItem?.id}`)
+                    setExcludeModalOpen(false)
+                    deleteNoticia(`/adminAcao/noticias/${selectedItem?.id}`).then(() => {
+                        console.log("noticia deletada com sucesso")
+                        reGetData()
+                    })
                 }} 
                 itemName={selectedItem?.titulo} />
 

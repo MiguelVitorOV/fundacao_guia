@@ -6,7 +6,7 @@ export const useGetData = (url) => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
 
-    useEffect(() => {
+    const getData = async () => {
         setLoading(true);
         api.get(url).then((res) => {
             setLoading(false)
@@ -16,8 +16,12 @@ export const useGetData = (url) => {
             setLoading(false)
             setError(err)
         })
+    }
+    
+    useEffect(() => {
+        getData()
     }, [url])
 
-    return [data, loading, error]
+    return [data, loading, error, getData]
 
 }
