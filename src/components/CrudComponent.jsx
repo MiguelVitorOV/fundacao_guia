@@ -1,33 +1,49 @@
 import { useGetData } from "../hooks/useGetData"
 import { useDeleteData } from "../hooks/useDeleteData"
-import {Pencil, Trash} from "lucide-react"
+import {Pencil, Trash, Plus} from "lucide-react"
 import { useState } from "react"
 import { DeleteModal } from "./Modais/DeleteModal"
 
 
 export function CrudComponent(props) {
     const [item, loading, error, reGetData] = useGetData(props.url)
-    const [excludeModalOpen, setExcludeModalOpen] = useState(false)
     const [deleteItem, loadingDelete, errorDelete] = useDeleteData()
 
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false)
+    const [createModalOpen, setCreateModalOpen] = useState(false)
     const [selectedItem, setSelectedItem] = useState(null)
 
+    const CreateModal = props.CreateModal
+
     const handleDeleteItem = () => {
-        setExcludeModalOpen(false)
+        setDeleteModalOpen(false)
         deleteItem(`${props.deleteUrl}/${selectedItem?.id}`).then(() => {
             console.log("Item deletado com sucesso")
             reGetData()
         })
     }
 
-    const handleCloseModal = () => {
-        setExcludeModalOpen(false)
+    const handleCloseDeleteModal = () => {
+        setDeleteModalOpen(false)
         setSelectedItem(null)
     }
 
-    const handleOpenModal = (noticia) => {
+    const handleOpenDeleteModal = (noticia) => {
         setSelectedItem(noticia)
-        setExcludeModalOpen(true)
+        setDeleteModalOpen(true)
+    }
+
+    const handleCreateItem = () => {
+        setCreateModalOpen(false)
+        alert("CRIADO")
+    }
+
+    const handleCloseCreateModal = () => {
+        setCreateModalOpen(false)
+    }
+
+    const handleOpenCreateModal = () => {
+        setCreateModalOpen(true)
     }
 
     const itemList = item && item.body[props.item].map((item) => {
@@ -38,7 +54,7 @@ export function CrudComponent(props) {
                     <button>
                         <Pencil />
                     </button>
-                    <button onClick={() => handleOpenModal(item)}>
+                    <button onClick={() => handleOpenDeleteModal(item)}>
                         <Trash />
                     </button>
                 </div>
@@ -46,15 +62,25 @@ export function CrudComponent(props) {
         )
     })
     return (
-        <>
+        <>  
+            <div className="flex justify-end">
+                <button onClick={handleOpenCreateModal} className="flex gap-2"> <Plus /> Criar Nova</button>
+            </div>
+            
+
             <ul>
                 {itemList}
             </ul>
 
-            <DeleteModal isOpen={excludeModalOpen} 
-            onClose={handleCloseModal} 
+            <DeleteModal isOpen={deleteModalOpen} 
+            onClose={handleCloseDeleteModal} 
             onConfirm={handleDeleteItem} 
             itemName={selectedItem?.[props.principal]} />
+
+            <CreateModal isOpen={createModalOpen} 
+            onClose={handleCloseCreateModal} 
+            onConfirm={handleCreateItem} 
+            propriedades={props.propriedades} />
 
         </>
     )
