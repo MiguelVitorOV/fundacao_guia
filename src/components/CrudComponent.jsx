@@ -1,6 +1,7 @@
 import { useGetData } from "../hooks/useGetData"
 import { useDeleteData } from "../hooks/useDeleteData"
 import { usePostData } from "../hooks/usePostData"
+import { usePatchData } from "../hooks/usePatchData"
 import {Pencil, Trash, Plus} from "lucide-react"
 import { useState } from "react"
 import { DeleteModal } from "./Modais/DeleteModal"
@@ -10,6 +11,7 @@ export function CrudComponent(props) {
     const [item, loading, error, reGetData] = useGetData(props.url)
     const [deleteItem, loadingDelete, errorDelete] = useDeleteData()
     const [createItem, loadingCreate, errorCreate] = usePostData()
+    const [updateItem, loadingUpdate, errorUpdate] = usePatchData()
 
     const [deleteModalOpen, setDeleteModalOpen] = useState(false)
     const [createModalOpen, setCreateModalOpen] = useState(false)
@@ -40,24 +42,44 @@ export function CrudComponent(props) {
         setDeleteModalOpen(true)
     }
 
-    const handleCreateItem = (payload) => {
-        const body = {...payload}
-        createItem(`${props.deleteUrl}`, payload).then(() => {
-            setPopup({ isOpen: true, sucesso: "Item criado com sucesso" })
-            reGetData()
-            setCreateModalOpen(false)
-        })
-        .catch((err) => {
-            const msgErro = err.response?.data?.mensagem || "Erro ao criar item"
-            setPopup({ isOpen: true, erro: msgErro })
-        })
+    const handleConfirmSaveItem = (payload) => {
+        if (payload.id){
+            const {id, ...body} = payload
+            updateItem(`${props.deleteUrl}/${id}`, body).then(() => {
+                setPopup({ isOpen: true, sucesso: "Item atualizado com sucesso" })
+                reGetData()
+                setCreateModalOpen(false)
+            })
+            .catch((err) => {
+                const msgErro = err.response?.data?.mensagem || "Erro ao atualizar item"
+                setPopup({ isOpen: true, erro: msgErro })
+            })
+
+        } else {
+            createItem(`${props.deleteUrl}`, payload).then(() => {
+                setPopup({ isOpen: true, sucesso: "Item criado com sucesso" })
+                reGetData()
+                setCreateModalOpen(false)
+            })
+            .catch((err) => {
+                const msgErro = err.response?.data?.mensagem || "Erro ao criar item"
+                setPopup({ isOpen: true, erro: msgErro })
+            })
+        }
     }
+
+    const handleOpenEditModal = (item) => {
+        setSelectedItem(item);
+        setCreateModalOpen(true); 
+    };
 
     const handleCloseCreateModal = () => {
         setCreateModalOpen(false)
+        setSelectedItem(null);  
     }
 
     const handleOpenCreateModal = () => {
+        setSelectedItem(null);  
         setCreateModalOpen(true)
     }
 
@@ -66,7 +88,7 @@ export function CrudComponent(props) {
             <div key={item.id} className="flex justify-between p-2 m-5 border border-black">
                 <p>{item[props.principal]}</p>
                 <div className="flex gap-5">
-                    <button>
+                    <button onClick={() => handleOpenEditModal(item)}>
                         <Pencil />
                     </button>
                     <button onClick={() => handleOpenDeleteModal(item)}>
@@ -94,8 +116,8 @@ export function CrudComponent(props) {
 
             <CreateModal isOpen={createModalOpen} 
             onClose={handleCloseCreateModal} 
-            onConfirm={handleCreateItem} 
-            propriedades={props.propriedades} />
+            onConfirm={handleConfirmSaveItem} 
+            itemToEdit={selectedItem} />
 
             {popup.isOpen && (
                 <PopUp 

@@ -1,35 +1,43 @@
 import { useForm } from "../../hooks/useForm"
-export const CreateModalNoticias = ({isOpen, onClose, onConfirm}) => {
+export const CreateModalNoticias = ({isOpen, onClose, onConfirm, itemToEdit}) => {
     if (!isOpen) return null;
+
+    const formatToDate = (timestamp) => {
+        if(!timestamp) return "";
+        const date = new Date(Number(timestamp))
+        return date.toISOString().split("T")[0];
+    }
     
     const [form, handleChange] = useForm({
-        noticia_id_fundacao: "",
-        titulo: "",
-        resumo: "",
-        conteudo: "",
-        data_publicacao: "",
-        tags: "",
-        imagens: "",
-        outros_links: ""
+        noticia_id_fundacao: itemToEdit?.noticia_id_fundacao || "",
+        titulo: itemToEdit?.titulo || "",
+        resumo: itemToEdit?.resumo || "",
+        conteudo: itemToEdit?.conteudo || "",
+        data_publicacao: formatToDate(itemToEdit?.data_publicacao),
+        tags: itemToEdit?.tags || "",
+        imagens: itemToEdit?.imagens || "",
+        outros_links: itemToEdit?.outros_links || ""
     })
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(form)
         const payload = {
             ...form,
-            noticia_id_fundacao: Number(form.noticia_id_fundacao),
+            noticia_id_fundacao: String(form.noticia_id_fundacao),
             data_publicacao: new Date(form.data_publicacao).getTime(),
         }
-        console.log("Seu payload" )
-        console.log(payload)
+        if (itemToEdit?.id) {
+            payload.id = itemToEdit.id;
+        }
         onConfirm(payload)
     }
+
+    const isEdit = !!itemToEdit;
 
     return (
         <div className="fixed inset-0 z-50 flex bg-black/50 items-center justify-center">
             <div className="flex flex-col justify-between p-5 bg-white items-center gap-5">
-                <h1>Criar nova notícia</h1>
+                <h1>{isEdit? `Editar notícia ${itemToEdit?.titulo}` : "Criar nova notícia"}</h1>
                 <form onSubmit={handleSubmit} className="flex flex-wrap justify-center gap-5">
                     <input 
                     name="noticia_id_fundacao"
