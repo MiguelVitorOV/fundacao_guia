@@ -16,6 +16,7 @@ import { ExamesManagePage } from "../pages/admin/ExamesManagePage";
 
 import { GlobalLayout } from "../layouts/GlobalLayout";
 import { AdminLayout } from "../layouts/AdminLayout";
+import { ProtectedRoute } from "../components/ProtectedRoute";
 
 function AppRoutes() {
     return (
@@ -30,12 +31,14 @@ function AppRoutes() {
 
             <Route path="/login" element={<LoginPage />} />
 
-            <Route path="/admin" element={<AdminLayout />} >
-                <Route index element={<DashboardPage />} />
-                <Route path="noticias" element={<NoticiasManagePage />} />
-                <Route path="vagas" element={<VagasManagePage />} />
-                <Route path="eventos" element={<EventosManagePage />} />
-                <Route path="exames" element={<ExamesManagePage />} />
+            <Route element={<ProtectedRoute />}>
+                <Route path="/admin" element={<AdminLayout />} >
+                    <Route index element={<DashboardPage />} />
+                    <Route path="noticias" element={<NoticiasManagePage />} />
+                    <Route path="vagas" element={<VagasManagePage />} />
+                    <Route path="eventos" element={<EventosManagePage />} />
+                    <Route path="exames" element={<ExamesManagePage />} />
+                </Route>
             </Route>
         </Routes>
     );
