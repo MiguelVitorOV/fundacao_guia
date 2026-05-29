@@ -1,9 +1,8 @@
 import { useGetData } from "../hooks/useGetData"
-import { BASE_URL } from "../constants/urls"
 
 export function NoticiasPage() {
 
-    const [noticias, loading, error] = useGetData(`${BASE_URL}/noticias?recentes=900`)
+    const [noticias, loading, error] = useGetData(`/noticias?recentes=900`)
 
     const noticiasList = noticias && noticias.body.noticias.map((noticia) => {
         return <li key={noticia.id}>{noticia.titulo}</li>

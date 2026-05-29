@@ -1,9 +1,8 @@
 import { useGetData } from "../hooks/useGetData"
-import { BASE_URL } from "../constants/urls"
 
 export function LocalizacaoPage() {
 
-    const [localizacao, loading, error] = useGetData(`${BASE_URL}/localizacao/overview`)
+    const [localizacao, loading, error] = useGetData(`/localizacao/overview`)
 
     const localizacaoList = localizacao && localizacao.body.blocos.map((bloco) => {
         return (

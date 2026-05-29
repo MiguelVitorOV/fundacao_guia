@@ -1,6 +1,5 @@
-import axios from "axios";
+import { api } from "../constants/api";
 import { createContext, useContext, useState, useEffect } from "react";
-import { BASE_URL } from "../constants/urls";
 
 const AuthContext = createContext({})
 
@@ -35,7 +34,7 @@ export function AuthProvider({ children }) {
                 senha: password
             }
 
-            const response = await axios.post(`${BASE_URL}/loginAdmin`, body)
+            const response = await api.post('/loginAdmin', body)
             
             const newUser = {email}
 

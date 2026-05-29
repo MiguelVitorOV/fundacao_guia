@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
+import {api} from "../constants/api"
 
 export const useGetData = (url) => {
     const [data, setData] = useState(undefined)
@@ -8,7 +8,7 @@ export const useGetData = (url) => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get(url).then((res) => {
+        api.get(url).then((res) => {
             setLoading(false)
             setData(res.data)
         })

@@ -1,12 +1,11 @@
 import { useGetData } from "../../hooks/useGetData";
-import { BASE_URL } from "../../constants/urls";
 
 export function DashboardPage() {
 
-    const [dataNoticias, loadingNoticias, errorNoticias] = useGetData(`${BASE_URL}/noticias?recentes=900`)
-    const [dataEventos, loadingEventos, errorEventos] = useGetData(`${BASE_URL}/eventos`)
-    const [dataVagas, loadingVagas, errorVagas] = useGetData(`${BASE_URL}/vagas`)
-    const [dataExames, loadingExames, errorExames] = useGetData(`${BASE_URL}/localizacao/overview`)
+    const [dataNoticias, loadingNoticias, errorNoticias] = useGetData(`/noticias?recentes=900`)
+    const [dataEventos, loadingEventos, errorEventos] = useGetData(`/eventos`)
+    const [dataVagas, loadingVagas, errorVagas] = useGetData(`/vagas`)
+    const [dataExames, loadingExames, errorExames] = useGetData(`/localizacao/overview`)
 
     const noticiasCount = dataNoticias && dataNoticias.body.noticias.length
     const eventosCount = dataEventos && dataEventos.body.eventos.length
