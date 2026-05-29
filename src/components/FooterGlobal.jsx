@@ -16,7 +16,7 @@ export function FooterGlobal() {
                 </nav>
 
                 <nav>
-                    <button onClick={() => {navigate("/login")}}>Login</button>
+                    <button onClick={() => {navigate("/login")}}>Área Administrativa</button>
                 </nav>
             </div>
             <div className="text-center pb-3">Desenvolvido por The Corredores</div>

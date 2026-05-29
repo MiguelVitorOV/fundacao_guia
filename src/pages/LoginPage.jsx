@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useNavigate } from "react-router"
 import { useAuth } from "../contexts/AuthContext"
 import { useForm } from "../hooks/useForm"
@@ -5,7 +6,7 @@ import { useForm } from "../hooks/useForm"
 export function LoginPage() {
     const [form, handleChange] = useForm({email: '', password: ''})
     const navigate = useNavigate()
-    const { login } = useAuth()
+    const { login, user } = useAuth()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -24,6 +25,12 @@ export function LoginPage() {
             }
         }
     }
+
+    useEffect(() => {
+        if (user){
+            navigate("/admin")
+        }
+    }, [user])
 
     return (
         <div>
