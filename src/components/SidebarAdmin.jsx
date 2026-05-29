@@ -1,8 +1,18 @@
 import { NavLink, useNavigate } from "react-router"
+import { useAuth } from "../contexts/AuthContext"
 
 export function SidebarAdmin() {
 
     const navigate = useNavigate()
+    const { logout } = useAuth()
+
+    const handleLogout = () => {
+        navigate("/")
+
+        setTimeout(() => {
+            logout()
+        }, 100)
+    }
 
     return (
         <div className="flex flex-col p-5 gap-10 justify-between h-screen">
@@ -16,7 +26,7 @@ export function SidebarAdmin() {
             </nav>
 
             <nav>
-                <button onClick={() => {navigate("/")}}>Sair</button>
+                <button onClick={handleLogout}>Sair</button>
             </nav>
         </div>
     )
