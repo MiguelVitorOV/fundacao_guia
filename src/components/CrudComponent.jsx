@@ -70,6 +70,7 @@ export function CrudComponent(props) {
 
     const handleOpenEditModal = (item) => {
         setSelectedItem(item)
+        console.log(item)
         setCreateModalOpen(true)
     }
 
