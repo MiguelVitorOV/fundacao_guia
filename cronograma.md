@@ -1,13 +1,11 @@
-### 29/05
-
-*Fazer /admin/ todos os crud
----
 
 ### 02/06
 
 *Fundação*
 * *Telas afetadas:* Home (Landing Page Pública).
 * Início do Frontend da *Área Pública* (Landing Page realizando o primeiro fetch em tempo real).
+* Começar CSS
+* Admin deslogar se token inválido
 
 ---
 
