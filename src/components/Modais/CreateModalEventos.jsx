@@ -43,7 +43,7 @@ export const CreateModalEventos = ({ isOpen, onClose, onConfirm, itemToEdit }) =
                         name="titulo"
                         value={form.titulo}
                         onChange={handleChange}
-                        placeholder="Digite o título da notícia"
+                        placeholder="Digite o título do evento"
                         type="text"
                         required
                     />
@@ -51,7 +51,7 @@ export const CreateModalEventos = ({ isOpen, onClose, onConfirm, itemToEdit }) =
                         name="descricao"
                         value={form.descricao}
                         onChange={handleChange}
-                        placeholder="Digite a descrição da notícia"
+                        placeholder="Digite a descrição do evento"
                         type="text"
                     />
                     <input
@@ -93,7 +93,7 @@ export const CreateModalEventos = ({ isOpen, onClose, onConfirm, itemToEdit }) =
                         name="quantidade"
                         value={form.quantidade}
                         onChange={handleChange}
-                        placeholder="Digite links adicionais"
+                        placeholder="Digite quantidade de ingressos"
                         type="number"
                         min={1}
                         required
