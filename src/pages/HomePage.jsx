@@ -1,4 +1,5 @@
 import { Link } from "react-router"
+import { ListaNoticias } from "../components/ListaNoticias"
 
 export function HomePage() {
     return (
@@ -12,7 +13,20 @@ export function HomePage() {
                     <Link to="/vagas">Trabalhe Conosco</Link>
                 </nav>
             </section>
-            <section>Seção de notícias</section>
+            <section className="px-36 bg-neutral-100 py-10">
+                <div className="flex justify-between items-center border-b border-neutral-200">
+                    <div className="flex flex-col gap-2 mb-2">
+                        <h2 className="text-2xl font-bold text-text">Últimas Notícias</h2>
+                        <p>Fique atualizado com as últimas notícias e artigos da fundação</p>
+                    </div>
+                    <Link to="/noticias">
+                        Ver todas as noticias
+                    </Link>
+                </div>
+                <div className="my-5">
+                    <ListaNoticias recentes={5}/>
+                </div>
+            </section>
             <section>Seção de serviços</section>
         </div>
     )

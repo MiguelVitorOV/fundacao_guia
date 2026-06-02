@@ -1,4 +1,5 @@
 import { useGetData } from "../hooks/useGetData"
+import { ListaNoticias } from "../components/ListaNoticias"
 
 export function NoticiasPage() {
 
@@ -10,9 +11,7 @@ export function NoticiasPage() {
     return (
         <>
             <h1>Notícias</h1>
-            <ul>
-                {noticiasList}
-            </ul>
+            <ListaNoticias recentes={900}/>
         </>
     )
 }
