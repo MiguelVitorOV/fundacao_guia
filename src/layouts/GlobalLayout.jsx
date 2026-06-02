@@ -4,9 +4,9 @@ import { FooterGlobal } from '../components/FooterGlobal'
 
 export function GlobalLayout() {
     return (
-        <div>
+        <div className="min-h-screen flex flex-col">
             <HeaderGlobal />
-            <main className="m-5">
+            <main className="m-5 flex-auto">
                 <Outlet />
             </main>
             <FooterGlobal />
