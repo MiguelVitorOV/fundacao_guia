@@ -1,12 +1,13 @@
-import { NavLink, useNavigate } from "react-router"
+import { NavLink, Link } from "react-router"
+import { HeartPulse } from "lucide-react"
 
 export function HeaderGlobal() {
-
-    const navigate = useNavigate()
-
     return (
         <div className="flex p-5 gap-10 justify-between">
-            <h1>Fundação Guia</h1>
+            <div className="flex gap-2 items-center">
+                <HeartPulse className="text-secondary"/>
+                <Link to="/" className="font-bold text-xl text-primary">Fundação Guia</Link>
+            </div>
             <nav className="flex gap-10">
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/noticias">Noticias</NavLink>
@@ -14,7 +15,10 @@ export function HeaderGlobal() {
                 <NavLink to="/eventos">Eventos</NavLink>
                 <NavLink to="/localizacao">Localização</NavLink>
             </nav>
-        <div className="invisible">Fundação Guia</div>
+        <div className="flex gap-2 invisible">
+                <HeartPulse />
+                <h1 className="font-bold text-xl">Fundação Guia</h1>
+            </div>
         </div>
     )
 }
