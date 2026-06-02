@@ -16,7 +16,7 @@ export function HomePage() {
             <section className="px-36 bg-neutral-100 py-10">
                 <div className="flex justify-between items-center border-b border-neutral-200">
                     <div className="flex flex-col gap-2 mb-2">
-                        <h2 className="text-2xl font-bold text-text">Últimas Notícias</h2>
+                        <h2 className="text-3xl font-bold text-text">Últimas Notícias</h2>
                         <p>Fique atualizado com as últimas notícias e artigos da fundação</p>
                     </div>
                     <Link to="/noticias">
@@ -27,7 +27,23 @@ export function HomePage() {
                     <ListaNoticias recentes={5}/>
                 </div>
             </section>
-            <section>Seção de serviços</section>
+            <section className="px-36 py-10 flex flex-col">
+                <div className="flex flex-col gap-2 justify-center pb-2 items-center">
+                    <h2 className="text-3xl font-bold text-text">Nossos Serviços</h2>
+                    <p>Facilitamos seu acesso às informações da Fundação para garantir que sua jornada seja a mais tranquila possível.</p>
+                </div>
+                <div className="flex gap-10 justify-center mt-16">
+                    <Link to="/localizacao">
+                        Buscar local
+                    </Link>
+                    <Link to="/eventos">
+                        Ver Eventos
+                    </Link>
+                    <Link to="/vagas">
+                        Ver oportunidades
+                    </Link>
+                </div>
+            </section>
         </div>
     )
 }
