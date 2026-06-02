@@ -33,6 +33,9 @@ export default {
           800: '#252B37',
         },
       },
+      fontFamily: {
+        sans: ['Montserrat', 'sans-serif'],
+      },
     },
   },
   plugins: [],
