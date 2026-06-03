@@ -17,7 +17,7 @@ export function FooterGlobal() {
                         <HeartPulse className="text-secondary"/>
                         <Link to="/" className="font-bold text-xl hover:opacity-90">Fundação Guia</Link>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi.</p>
+                    <p>O portal Fundação Guia é uma plataforma de informações da Fundação Cristiano Varella. Nosso objetivo é promover o acesso facilitado a serviços de saúde, eventos e oportunidades, reforçando o compromisso histórico da instituição com a vida, a excelência e a humanização no atendimento à nossa comunidade.</p>
                 </div>
                 
                 <div className="flex flex-col gap-10 justify-between">
