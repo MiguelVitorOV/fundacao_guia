@@ -1,4 +1,4 @@
-import { Link } from "react-router"
+import { InfoCard } from "../components/InfoCard"
 import { ListaNoticias } from "../components/ListaNoticias"
 import { NavigateButton } from "../components/NavigateButton"
 
@@ -31,16 +31,25 @@ export function HomePage() {
                     <h2 className="text-3xl font-bold text-text">Nossos Serviços</h2>
                     <p>Facilitamos seu acesso às informações da Fundação para garantir que sua jornada seja a mais tranquila possível.</p>
                 </div>
-                <div className="flex gap-10 justify-center mt-16">
-                    <Link to="/localizacao">
-                        Buscar local
-                    </Link>
-                    <Link to="/eventos">
-                        Ver Eventos
-                    </Link>
-                    <Link to="/vagas">
-                        Ver oportunidades
-                    </Link>
+                <div className="flex gap-8 justify-center mt-16 flex-wrap">
+                    <InfoCard 
+                        titulo="Localização e Exames" 
+                        descricao="Descubra as rotas e todas as opções para chegar até a Fundação." 
+                        linkTexto="Buscar local" 
+                        rota="/localizacao" 
+                    />
+                    <InfoCard 
+                        titulo="Agenda de Eventos" 
+                        descricao="Fique por dentro das datas e participe das nossas ações e eventos." 
+                        linkTexto="Ver Eventos" 
+                        rota="/eventos" 
+                    />
+                    <InfoCard 
+                        titulo="Vagas e Carreira" 
+                        descricao="Confira as vagas abertas e venha fazer parte da nossa equipe." 
+                        linkTexto="Ver oportunidades" 
+                        rota="/vagas" 
+                    />
                 </div>
             </section>
         </div>
