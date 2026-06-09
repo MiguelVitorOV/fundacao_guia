@@ -32,18 +32,21 @@ export function FooterGlobal() {
                 </div>
                 <div className="flex flex-col flex-wrap w-1/4 gap-10 justify-betwee">
                     <h1 className="font-bold text-lg text-white">Sobre a FCV</h1>
-                    <div className="flex gap-2 items-center">
-                        <Phone className="text-secondary"/>
-                        <span>(32) 3729-7000</span>
+                    <div className="flex flex-col gap-2">
+                        <div className="flex gap-2 items-center">
+                            <Phone className="text-secondary"/>
+                            <span>(32) 3729-7000</span>
+                        </div>
+                        <div className="flex gap-2 items-center">
+                            <MapPin className="text-secondary"/>
+                            <span>Avenida Cristiano Ferreira Varella, 555, Universitário, Muriaé, MG, CEP 36888-233</span>
+                        </div>
+                        <div className="flex gap-2 items-center">
+                            <MousePointer2 className="text-secondary"/>
+                            <a href="https://fcv.org.br/" target="_blank" className="hover:text-secondary">fcv.org.br</a>
+                        </div>
                     </div>
-                    <div className="flex gap-2 items-center">
-                        <MapPin className="text-secondary"/>
-                        <span>Avenida Cristiano Ferreira Varella, 555, Universitário, Muriaé, MG, CEP 36888-233</span>
-                    </div>
-                    <div className="flex gap-2 items-center">
-                        <MousePointer2 className="text-secondary"/>
-                        <a href="https://fcv.org.br/" target="_blank" className="hover:text-secondary">fcv.org.br</a>
-                    </div>
+                    
                 </div>
             </div>
             <div className="flex items-center justify-center p-3 text-xs text-neutral-400 gap-1 border-t border-blue-800">

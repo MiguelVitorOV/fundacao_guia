@@ -1,14 +1,3 @@
-
-### 02/06
-
-*Fundação*
-* *Telas afetadas:* Home (Landing Page Pública).
-* Início do Frontend da *Área Pública* (Landing Page realizando o primeiro fetch em tempo real).
-* Começar CSS
-* Admin deslogar se token inválido
-
----
-
 ### 09/06
 
 *Fundação*
@@ -19,3 +8,6 @@ Faltando: Página de detalhes e estilização
 ---
 
 ### 25/06 - *ENTREGA FINAL FUNDAÇÃO*
+
+* Admin deslogar se token inválido
+* Selects ao criar exame

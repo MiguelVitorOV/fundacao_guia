@@ -6,7 +6,7 @@ export function GlobalLayout() {
     return (
         <div className="min-h-screen flex flex-col">
             <HeaderGlobal />
-            <main className="m-5 flex-auto">
+            <main className="flex-auto">
                 <Outlet />
             </main>
             <FooterGlobal />
