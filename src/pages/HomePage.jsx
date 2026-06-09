@@ -20,9 +20,7 @@ export function HomePage() {
                         <h2 className="text-3xl font-bold text-text">Últimas Notícias</h2>
                         <p>Fique atualizado com as últimas notícias e artigos da fundação</p>
                     </div>
-                    <Link to="/noticias">
-                        Ver todas as noticias
-                    </Link>
+                    <NavigateButton rota="/noticias" text="Ver todas as noticias" variacao="transparent" />
                 </div>
                 <div className="my-5">
                     <ListaNoticias recentes={5}/>

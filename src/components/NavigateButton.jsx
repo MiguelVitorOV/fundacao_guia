@@ -6,7 +6,7 @@ export function NavigateButton(props) {
     const variations = {
     primary: "bg-primary text-white hover:bg-blue-800",
     secondary: "bg-secondary text-white hover:bg-pink-800",
-    transparent: "border-2 border-primary text-primary hover:bg-neutral-200",
+    transparent: "border-2 border-primary text-primary hover:bg-primary hover:text-white",
     white: "bg-white text-primary hover:bg-primary hover:text-white",
     white2: "bg-white text-primary hover:bg-neutral-200"
   };
