@@ -6,8 +6,8 @@
         1.2.2 Notícias
         1.2.3 Localize
         1.2.4 Eventos
-    1.3 Barra de filtro geral
 2. Estilização Admin
+    2.0 Login Page
     2.1. Dashboard
     2.2. Gerenciar exames
     2.3. Gerenciar editais
