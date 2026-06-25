@@ -1,5 +1,6 @@
 import { useFilters } from "../hooks/useFilters";
 import { FilterBar } from "../components/FilterBar";
+import { ListaVagas } from "../components/ListaVagas";
 
 export function VagasPage() {
     const keysToExtract = ["modalidade", "cidade", "tipo_vinculo", "horas"];
@@ -47,16 +48,8 @@ export function VagasPage() {
         );
     }
 
-    const vagasList = filteredVagas.map((vaga) => {
-        return (
-            <li key={vaga.id}>
-                {vaga.cargo} - {vaga.cidade} ({vaga.modalidade})
-            </li>
-        );
-    });
-
     return (
-        <div className="px-36 py-10 bg-neutral-100">
+        <div className="px-36 py-10 bg-neutral-100 min-h-screen">
             <h1 className="text-blue-800 font-bold text-4xl text-center mb-2">Trabalhe Conosco</h1>
             <p className="text-center text-text mb-8 w-2/3 mx-auto">Faça parte da nossa equipe! Explore as oportunidades em aberto e encontre a vaga ideal para o seu perfil e momento de carreira.</p>
             <FilterBar 
@@ -68,9 +61,7 @@ export function VagasPage() {
             {loading && <p>Carregando vagas...</p>}
             {error && <p>Erro ao carregar vagas.</p>}
             
-            <ul>
-                {vagasList}
-            </ul>
+            <ListaVagas vagas={filteredVagas} />
         </div>
     );
 }
