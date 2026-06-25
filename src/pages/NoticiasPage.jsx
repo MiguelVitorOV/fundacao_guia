@@ -1,5 +1,6 @@
 import { useFilters } from "../hooks/useFilters";
 import { FilterBar } from "../components/FilterBar";
+import { ListaNoticias } from "../components/ListaNoticias";
 
 export function NoticiasPage() {
     const keysToExtract = ["tags"];
@@ -33,10 +34,6 @@ export function NoticiasPage() {
         });
     }
 
-    const noticiasList = filteredNoticias.map((noticia) => {
-        return <li key={noticia.id}>{noticia.titulo}</li>
-    });
-
     return (
         <div className="px-36 py-10 bg-neutral-100">
             <h1 className="text-blue-800 font-bold text-4xl text-center mb-2">Notícias da Fundação</h1>
@@ -50,9 +47,7 @@ export function NoticiasPage() {
             {loading && <p>Carregando notícias...</p>}
             {error && <p>Erro ao carregar notícias.</p>}
 
-            <ul>
-               {noticiasList}
-            </ul>
+            <ListaNoticias noticias={filteredNoticias} />
         </div>
     );
 }
