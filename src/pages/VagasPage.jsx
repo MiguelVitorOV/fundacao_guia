@@ -56,9 +56,7 @@ export function VagasPage() {
     });
 
     return (
-        <>
-            <h1>Vagas</h1>
-            
+        <div className="px-36 py-10">
             <FilterBar 
                 filters={filtersConfig}
                 onSearch={handleSearch}
@@ -71,6 +69,6 @@ export function VagasPage() {
             <ul>
                 {vagasList}
             </ul>
-        </>
+        </div>
     );
 }

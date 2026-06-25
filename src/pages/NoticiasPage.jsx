@@ -38,9 +38,7 @@ export function NoticiasPage() {
     });
 
     return (
-        <>
-            <h1>Notícias</h1>
-            
+        <div className="px-36 py-10">
             <FilterBar 
                 filters={filtersConfig}
                 onSearch={handleSearch}
@@ -53,6 +51,6 @@ export function NoticiasPage() {
             <ul>
                {noticiasList}
             </ul>
-        </>
+        </div>
     );
 }

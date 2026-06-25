@@ -97,9 +97,7 @@ export function LocalizacaoPage() {
     });
 
     return (
-        <div>
-            <h1>Localização</h1>
-            
+        <div className="px-36 py-10">
             <FilterBar 
                 filters={filtersConfig}
                 onSearch={handleSearch}

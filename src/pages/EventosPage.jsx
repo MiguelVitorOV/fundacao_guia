@@ -47,9 +47,7 @@ export function EventosPage() {
     console.log(filterValues)
 
     return (
-        <>
-            <h1>Eventos</h1>
-            
+         <div className="px-36 py-10">
             <FilterBar 
                 filters={filtersConfig}
                 onSearch={handleSearch}
@@ -62,6 +60,6 @@ export function EventosPage() {
             <ul>
                 {eventosList}
             </ul>
-        </>
+        </div>
     );
 }
