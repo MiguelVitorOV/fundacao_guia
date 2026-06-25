@@ -32,7 +32,7 @@ export function DashboardPage() {
     return (
         <div className="p-8 w-full max-w-7xl mx-auto">
             <div className="mb-8">
-                <h1 className="text-3xl font-extrabold text-blue-900">Visão Geral</h1>
+                <h1 className="text-3xl font-extrabold text-text">Visão Geral</h1>
                 <p className="text-gray-500 mt-1">Acompanhe os principais indicadores da Fundação Guia.</p>
             </div>
 
