@@ -66,16 +66,12 @@ export function useFilters(baseUrl, filterPath, keysToExtract, searchKey = "sear
                     let parsedValues = [rawValue];
 
                     if (typeof rawValue === "string") {
-                        let cleanString = rawValue.trim();
+                        let cleanString = rawValue.trim().replace(/[\[\]"\\/]/g, '');
                         
-                        if (cleanString.startsWith('"') && cleanString.endsWith('"')) {
-                            cleanString = cleanString.slice(1, -1);
-                        }
-
-                        if (cleanString.includes(';')) {
-                            parsedValues = cleanString.split(';').map(v => v.trim());
+                        if (cleanString.includes(';') || cleanString.includes(',')) {
+                            parsedValues = cleanString.split(/[;,]/).map(v => v.trim());
                         } else {
-                            parsedValues = [cleanString];
+                            parsedValues = [cleanString.trim()];
                         }
                     } else if (Array.isArray(rawValue)) {
                         parsedValues = rawValue;
