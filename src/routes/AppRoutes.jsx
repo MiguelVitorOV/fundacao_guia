@@ -4,6 +4,7 @@ import { HomePage } from "../pages/HomePage"
 import { NoticiasPage } from "../pages/NoticiasPage"
 import { VagasPage } from "../pages/VagasPage"
 import { EventosPage } from "../pages/EventosPage"
+import { EventoDetalhesPage } from "../pages/EventoDetalhesPage"
 import { LocalizacaoPage } from "../pages/LocalizacaoPage"
 import { VagaDetalhesPage } from "../pages/VagaDetalhesPage"
 
@@ -28,6 +29,7 @@ function AppRoutes() {
                 <Route path="vagas" element={<VagasPage />} />
                 <Route path="vagas/:id" element={<VagaDetalhesPage />} />
                 <Route path="eventos" element={<EventosPage />} />
+                <Route path="eventos/:id" element={<EventoDetalhesPage />} />
                 <Route path="localizacao" element={<LocalizacaoPage />} />
             </Route>
 
