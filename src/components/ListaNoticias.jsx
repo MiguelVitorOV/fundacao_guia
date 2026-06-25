@@ -1,13 +1,7 @@
 import { useGetData } from "../hooks/useGetData"
-import { useNavigate } from "react-router"
 
 export function ListaNoticias(props) {
-    const navigate = useNavigate()
     const [fetchedNoticias, fetchedLoading, fetchedError] = useGetData(props.noticias ? null : `/noticias?recentes=${props.recentes}`)
-
-    const handleNavigate = (id) => {
-        navigate(`/noticia/${id}`)
-    }
 
     const IMAGEM_PLACEHOLDER = "/public/placeholder.png"
 
@@ -44,8 +38,7 @@ export function ListaNoticias(props) {
         return (
             <div 
                 key={noticia.id}
-                className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow cursor-pointer group"
-                onClick={() => handleNavigate(noticia.id)}
+                className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow group"
             >
                 <div className="overflow-hidden h-48 w-full bg-gray-100">
                     <img 
