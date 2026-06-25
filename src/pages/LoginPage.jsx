@@ -39,25 +39,55 @@ export function LoginPage() {
     }, [user])
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="Digite seu email"
-                    type="email"
-                />
-                <input
-                    name="password"
-                    value={form.password}
-                    onChange={handleChange}
-                    placeholder="Digite sua senha"
-                    type="password"
-                />
-                <button type="submit">Entrar</button>
-            </form>
+        <div className="min-h-screen bg-neutral-100 flex flex-col justify-center items-center px-4">
+            <div className="bg-white p-10 rounded-xl shadow-lg w-full max-w-md border border-gray-100">
+                <div className="text-center mb-8">
+                    <h1 className="text-3xl font-extrabold text-blue-800">Acesso Restrito</h1>
+                    <p className="text-gray-500 mt-2">Área administrativa da Fundação Guia</p>
+                </div>
+                
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-1" htmlFor="email">
+                            E-mail
+                        </label>
+                        <input
+                            id="email"
+                            name="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            placeholder="Digite seu e-mail"
+                            type="email"
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-transparent transition-all"
+                            required
+                        />
+                    </div>
+                    
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-1" htmlFor="password">
+                            Senha
+                        </label>
+                        <input
+                            id="password"
+                            name="password"
+                            value={form.password}
+                            onChange={handleChange}
+                            placeholder="Digite sua senha"
+                            type="password"
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:border-transparent transition-all"
+                            required
+                        />
+                    </div>
+                    
+                    <button 
+                        type="submit" 
+                        className="w-full mt-2 bg-blue-800 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800/30 transition-all shadow-md"
+                    >
+                        Entrar
+                    </button>
+                </form>
+            </div>
+            
             {popup.isOpen && (
                 <PopUp 
                     erro={popup.erro} 
