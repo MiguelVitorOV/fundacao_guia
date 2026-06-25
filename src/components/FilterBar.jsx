@@ -2,7 +2,7 @@ import Select from 'react-select';
 
 export function FilterBar(props) {
   return (
-    <div className="flex gap-4 justify-between items-center bg-neutral-100/70 p-6 border-b-2 border-primary/80 my-4 rounded-md">
+    <div className="flex gap-4 justify-between items-center bg-white p-6 border-b-2 border-primary/80 my-4 rounded-md">
 
       <input
         className="bg-transparent rounded-full w-1/2 border-2 border-primary focus:outline-none p-3 px-6 text-text"

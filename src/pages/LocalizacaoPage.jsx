@@ -97,7 +97,7 @@ export function LocalizacaoPage() {
     });
 
     return (
-        <div className="px-36 py-10">
+        <div className="px-36 py-10 bg-neutral-100">
             <h1 className="text-blue-800 font-bold text-4xl text-center mb-2">Se Localize na FCV</h1>
             <p className="text-center text-text mb-8 w-2/3 mx-auto">Encontre facilmente o bloco ou setor desejado. Utilize a busca abaixo para saber onde seu exame será realizado com agilidade.</p>
             <FilterBar 
