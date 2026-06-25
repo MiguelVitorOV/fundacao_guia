@@ -1,5 +1,5 @@
 import { useGetData } from "../../hooks/useGetData"
-import { Briefcase, FileText, Calendar, Activity } from "lucide-react"
+import { Briefcase, FileText, Calendar, Activity, Loader2 } from "lucide-react"
 import { useState, useEffect } from "react"
 import { PopUp } from "../../components/PopUp"
 
@@ -9,11 +9,12 @@ import { NoticiasListAdmin } from "../../components/admin/NoticiasListAdmin"
 
 export function DashboardPage() {
 
-    const [dataNoticias, , errorNoticias] = useGetData(`/noticias?recentes=900`)
-    const [dataEventos, , errorEventos] = useGetData(`/eventos`)
-    const [dataVagas, , errorVagas] = useGetData(`/vagas`)
-    const [dataExames, , errorExames] = useGetData(`/localizacao/overview`)
+    const [dataNoticias, loadingNoticias, errorNoticias] = useGetData(`/noticias?recentes=900`)
+    const [dataEventos, loadingEventos, errorEventos] = useGetData(`/eventos`)
+    const [dataVagas, loadingVagas, errorVagas] = useGetData(`/vagas`)
+    const [dataExames, loadingExames, errorExames] = useGetData(`/localizacao/overview`)
 
+    const isLoading = loadingNoticias || loadingEventos || loadingVagas || loadingExames
     const [popup, setPopup] = useState({ isOpen: false, erro: "" })
 
     useEffect(() => {
@@ -38,6 +39,15 @@ export function DashboardPage() {
     const recentVagas = vagas.slice(0, 3)
     const recentEventos = eventos.slice(0, 2)
     const recentNoticias = noticias.slice(0, 4)
+
+    if (isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[70vh] w-full">
+                <Loader2 className="animate-spin text-blue-800" size={48} strokeWidth={2} />
+                <p className="text-gray-500 mt-4 font-medium animate-pulse">Carregando indicadores...</p>
+            </div>
+        )
+    }
 
     return (
         <div className="p-8 w-full max-w-7xl mx-auto">
