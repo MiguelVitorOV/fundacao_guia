@@ -23,7 +23,7 @@ export function HomePage() {
                     <NavigateButton rota="/noticias" text="Ver todas as noticias" variacao="transparent" />
                 </div>
                 <div className="my-5">
-                    <ListaNoticias recentes={5}/>
+                    <ListaNoticias recentes={3}/>
                 </div>
             </section>
             <section className="px-36 py-10 flex flex-col">

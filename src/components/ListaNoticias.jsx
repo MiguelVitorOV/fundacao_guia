@@ -15,7 +15,10 @@ export function ListaNoticias(props) {
     const isLoading = props.noticias ? false : fetchedLoading
     const isError = props.noticias ? false : fetchedError
 
-    const noticiasList = noticiasArray.map((noticia) => {
+    const limit = props.recentes ? parseInt(props.recentes, 10) : undefined
+    const noticiasLimitadas = limit ? noticiasArray.slice(0, limit) : noticiasArray
+
+    const noticiasList = noticiasLimitadas.map((noticia) => {
         const temLinkExterno = noticia.outros_links && noticia.outros_links.trim() !== ""
         let imageUrl = IMAGEM_PLACEHOLDER
         if (noticia.imagens) {
