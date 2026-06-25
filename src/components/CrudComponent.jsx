@@ -3,7 +3,7 @@ import { useDeleteData } from "../hooks/useDeleteData"
 import { usePostData } from "../hooks/usePostData"
 import { usePatchData } from "../hooks/usePatchData"
 import { Pencil, Trash, Plus } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { DeleteModal } from "./Modais/DeleteModal"
 import { PopUp } from "./PopUp"
 
@@ -17,6 +17,12 @@ export function CrudComponent(props) {
     const [createModalOpen, setCreateModalOpen] = useState(false)
     const [popup, setPopup] = useState({ isOpen: false, sucesso: "", erro: "" })
     const [selectedItem, setSelectedItem] = useState(null)
+
+    useEffect(() => {
+        if (error) {
+            setPopup({ isOpen: true, erro: "Erro ao carregar dados do servidor." })
+        }
+    }, [error])
 
     const CreateModal = props.CreateModal
 

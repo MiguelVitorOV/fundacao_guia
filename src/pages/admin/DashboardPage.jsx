@@ -1,5 +1,7 @@
 import { useGetData } from "../../hooks/useGetData"
 import { Briefcase, FileText, Calendar, Activity } from "lucide-react"
+import { useState, useEffect } from "react"
+import { PopUp } from "../../components/PopUp"
 
 import { VagasListAdmin } from "../../components/admin/VagasListAdmin"
 import { EventosListAdmin } from "../../components/admin/EventosListAdmin"
@@ -7,10 +9,18 @@ import { NoticiasListAdmin } from "../../components/admin/NoticiasListAdmin"
 
 export function DashboardPage() {
 
-    const [dataNoticias] = useGetData(`/noticias?recentes=900`)
-    const [dataEventos] = useGetData(`/eventos`)
-    const [dataVagas] = useGetData(`/vagas`)
-    const [dataExames] = useGetData(`/localizacao/overview`)
+    const [dataNoticias, , errorNoticias] = useGetData(`/noticias?recentes=900`)
+    const [dataEventos, , errorEventos] = useGetData(`/eventos`)
+    const [dataVagas, , errorVagas] = useGetData(`/vagas`)
+    const [dataExames, , errorExames] = useGetData(`/localizacao/overview`)
+
+    const [popup, setPopup] = useState({ isOpen: false, erro: "" })
+
+    useEffect(() => {
+        if (errorNoticias || errorEventos || errorVagas || errorExames) {
+            setPopup({ isOpen: true, erro: "Erro ao carregar dados da Visão Geral" })
+        }
+    }, [errorNoticias, errorEventos, errorVagas, errorExames])
 
     const noticias = dataNoticias?.body?.noticias || []
     const eventos = dataEventos?.body?.eventos || []
@@ -89,6 +99,13 @@ export function DashboardPage() {
                 {/* Direita: Últimas Notícias */}
                 <NoticiasListAdmin noticias={recentNoticias} />
             </div>
+
+            {popup.isOpen && (
+                <PopUp 
+                    erro={popup.erro} 
+                    onClose={() => setPopup({ isOpen: false, erro: "" })} 
+                />
+            )}
         </div>
     )
 }
