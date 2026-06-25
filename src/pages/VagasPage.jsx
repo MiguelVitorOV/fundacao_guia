@@ -18,7 +18,7 @@ export function VagasPage() {
     const filtersConfig = [
         { name: "modalidade", placeholder: "Modalidade", options: filterOptions.modalidade },
         { name: "cidade", placeholder: "Cidade", options: filterOptions.cidade },
-        { name: "tipo_vinculo", placeholder: "Tipo de Vínculo", options: filterOptions.tipo_vinculo }
+        { name: "tipo_vinculo", placeholder: "Vínculo", options: filterOptions.tipo_vinculo }
     ];
 
     let filteredVagas = unfilteredData?.body?.vagas || [];
