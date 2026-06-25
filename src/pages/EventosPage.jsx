@@ -48,6 +48,8 @@ export function EventosPage() {
 
     return (
          <div className="px-36 py-10">
+            <h1 className="text-blue-800 font-bold text-4xl text-center mb-2">Agenda de Eventos</h1>
+            <p className="text-center text-text mb-8 w-2/3 mx-auto">Fique por dentro do que acontece na Fundação. Participe de nossos encontros, palestras e ações voltadas para a comunidade.</p>
             <FilterBar 
                 filters={filtersConfig}
                 onSearch={handleSearch}
