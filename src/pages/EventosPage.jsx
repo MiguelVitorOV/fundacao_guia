@@ -1,5 +1,6 @@
 import { useFilters } from "../hooks/useFilters";
 import { FilterBar } from "../components/FilterBar";
+import { ListaEventos } from "../components/ListaEventos";
 
 export function EventosPage() {
     const keysToExtract = ["status", "publico_alvo"];
@@ -40,14 +41,8 @@ export function EventosPage() {
         );
     }
 
-    const eventosList = filteredEventos.map((evento) => {
-        return <li key={evento.id}>{evento.titulo} - {evento.status}</li>
-    });
-    console.log(filterOptions)
-    console.log(filterValues)
-
     return (
-         <div className="px-36 py-10 bg-neutral-100">
+         <div className="px-36 py-10 bg-neutral-100 min-h-screen">
             <h1 className="text-blue-800 font-bold text-4xl text-center mb-2">Agenda de Eventos</h1>
             <p className="text-center text-text mb-8 w-2/3 mx-auto">Fique por dentro do que acontece na Fundação. Participe de nossos encontros, palestras e ações voltadas para a comunidade.</p>
             <FilterBar 
@@ -59,9 +54,7 @@ export function EventosPage() {
             {loading && <p>Carregando eventos...</p>}
             {error && <p>Erro ao carregar eventos.</p>}
             
-            <ul>
-                {eventosList}
-            </ul>
+            <ListaEventos eventos={filteredEventos} />
         </div>
     );
 }
