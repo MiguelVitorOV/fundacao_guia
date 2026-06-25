@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useGetData } from "./useGetData";
+import { parseTags } from "../utils/formatter";
 
 
 export function useFilters(baseUrl, filterPath, keysToExtract, searchKey = "search") {
@@ -63,19 +64,7 @@ export function useFilters(baseUrl, filterPath, keysToExtract, searchKey = "sear
                 let rawValue = item[key];
                 
                 if (rawValue) {
-                    let parsedValues = [rawValue];
-
-                    if (typeof rawValue === "string") {
-                        let cleanString = rawValue.trim().replace(/[\[\]"\\/]/g, '');
-                        
-                        if (cleanString.includes(';') || cleanString.includes(',')) {
-                            parsedValues = cleanString.split(/[;,]/).map(v => v.trim());
-                        } else {
-                            parsedValues = [cleanString.trim()];
-                        }
-                    } else if (Array.isArray(rawValue)) {
-                        parsedValues = rawValue;
-                    }
+                    let parsedValues = parseTags(rawValue);
 
                     parsedValues.forEach(val => {
                         if (val) optionsMap[key].add(val);

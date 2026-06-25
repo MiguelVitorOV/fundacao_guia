@@ -1,4 +1,5 @@
 import { useGetData } from "../hooks/useGetData"
+import { parseTags } from "../utils/formatter"
 
 export function ListaNoticias(props) {
     const [fetchedNoticias, fetchedLoading, fetchedError] = useGetData(props.noticias ? null : `/noticias?recentes=${props.recentes}`)
@@ -23,17 +24,7 @@ export function ListaNoticias(props) {
             }
         }
 
-        let tagsArray = []
-        if (typeof noticia.tags === 'string') {
-            let cleanString = noticia.tags.trim().replace(/[\[\]"\\/]/g, '')
-            if (cleanString.includes(';') || cleanString.includes(',')) {
-                tagsArray = cleanString.split(/[;,]/).map(t => t.trim()).filter(Boolean)
-            } else {
-                tagsArray = [cleanString.trim()].filter(Boolean)
-            }
-        } else if (Array.isArray(noticia.tags)) {
-            tagsArray = noticia.tags
-        }
+        const tagsArray = parseTags(noticia.tags)
 
         return (
             <div 

@@ -59,4 +59,3 @@ export function FooterGlobal() {
         </footer>
     )
 }
-// add: contato

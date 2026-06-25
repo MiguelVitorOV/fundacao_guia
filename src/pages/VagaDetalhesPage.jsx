@@ -1,14 +1,12 @@
 import { useParams, useNavigate } from "react-router";
 import { useGetData } from "../hooks/useGetData";
+import { parseList, parseBeneficios } from "../utils/formatter";
 
 export function VagaDetalhesPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     
-    // Busca a vaga pelo ID
     const [data, loading, error] = useGetData(`/vagas/${id}`);
-    
-    // O endpoint parece retornar body.vagas como um array com 1 item
     const vaga = data?.body?.vagas?.[0] || data?.body?.vaga || data?.body;
 
     if (loading) {
@@ -36,22 +34,9 @@ export function VagaDetalhesPage() {
     const link = vaga.como_se_inscrever || vaga.link || vaga.link_candidatura || vaga.outros_links;
     const temLinkExterno = link && link.trim() !== "";
 
-    // Função auxiliar para parsear strings que parecem arrays JSON
-    const parseList = (str) => {
-        if (!str) return [];
-        try {
-            const parsed = JSON.parse(str);
-            if (Array.isArray(parsed)) return parsed;
-            return [str];
-        } catch (e) {
-            // Se falhar no parse, apenas divide por linhas se tiver quebra de linha
-            return str.split('\n').map(s => s.trim()).filter(Boolean);
-        }
-    };
-
     const atividadesList = parseList(vaga.principais_atividades);
     const requisitosList = parseList(vaga.requisitos);
-    const beneficiosList = parseList(vaga.beneficios);
+    const beneficiosList = parseBeneficios(vaga.beneficios);
 
     return (
         <div className="bg-neutral-100 min-h-screen pt-10 pb-20">

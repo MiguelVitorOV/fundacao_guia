@@ -12,7 +12,6 @@ export function ListaVagas(props) {
     const vagasLimitadas = limit ? vagasArray.slice(0, limit) : vagasArray
 
     const vagasList = vagasLimitadas.map((vaga) => {
-        // Tenta buscar o link em campos prováveis
         const link = vaga.link || vaga.link_candidatura || vaga.outros_links;
         const temLinkExterno = link && link.trim() !== "";
 
