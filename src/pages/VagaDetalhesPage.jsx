@@ -30,7 +30,7 @@ export function VagaDetalhesPage() {
                 <p className="text-xl text-red-600">Erro ao carregar a vaga ou vaga não encontrada.</p>
                 <button 
                     onClick={() => navigate('/vagas')} 
-                    className="bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+                    className="bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-primary"
                 >
                     Voltar para Vagas
                 </button>

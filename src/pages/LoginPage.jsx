@@ -81,7 +81,7 @@ export function LoginPage() {
                     
                     <button 
                         type="submit" 
-                        className="w-full mt-2 bg-blue-800 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800/30 transition-all shadow-md"
+                        className="w-full mt-2 bg-blue-800 text-white font-bold py-3 px-4 rounded-lg hover:bg-primary focus:outline-none focus:ring-4 focus:ring-blue-800/30 transition-all shadow-md"
                     >
                         Entrar
                     </button>

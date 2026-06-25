@@ -95,7 +95,7 @@ export function CrudComponent(props) {
             <div key={item.id} className="flex justify-between items-center p-5 bg-white border border-gray-200 shadow-sm rounded-xl hover:shadow-md transition-shadow group">
                 <p className="font-semibold text-gray-900 text-lg">{item[props.principal]}</p>
                 <div className="flex gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
-                    <button onClick={() => handleOpenEditModal(item)} className="p-2 text-blue-600 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors" title="Editar">
+                    <button onClick={() => handleOpenEditModal(item)} className="p-2 text-blue-600 hover:bg-blue-50 hover:text-blue-800 rounded-lg transition-colors" title="Editar">
                         <Pencil size={20} />
                     </button>
                     <button onClick={() => handleOpenDeleteModal(item)} className="p-2 text-red-500 hover:bg-red-50 hover:text-red-700 rounded-lg transition-colors" title="Excluir">
@@ -111,7 +111,7 @@ export function CrudComponent(props) {
                 <div className="text-gray-500 text-sm">
                     {item ? `${item.body[props.item].length} registro(s) encontrado(s)` : "Carregando..."}
                 </div>
-                <button onClick={handleOpenCreateModal} className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold hover:bg-blue-900 transition-colors shadow-sm">
+                <button onClick={handleOpenCreateModal} className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold hover:bg-blue-800 transition-colors shadow-sm">
                     <Plus size={20} strokeWidth={2.5} />
                     Criar Novo
                 </button>

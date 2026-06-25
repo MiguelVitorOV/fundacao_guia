@@ -21,7 +21,7 @@ export function ListaBlocos({ blocos }) {
                                 {bloco.setores.map((setor) => (
                                     <div key={setor.id} className="bg-neutral-50 rounded-lg p-5 border border-neutral-200 hover:shadow-sm transition-shadow">
                                         <div className="flex items-center gap-2 mb-4 border-b border-neutral-200 pb-2">
-                                            <h3 className="font-bold text-blue-900 text-lg">{setor.nome}</h3>
+                                            <h3 className="font-bold text-text text-lg">{setor.nome}</h3>
                                         </div>
                                         
                                         {setor.exames && setor.exames.length > 0 ? (    

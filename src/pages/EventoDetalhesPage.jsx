@@ -30,7 +30,7 @@ export function EventoDetalhesPage() {
                 <p className="text-xl text-red-600">Erro ao carregar o evento ou evento não encontrado.</p>
                 <button 
                     onClick={() => navigate('/eventos')} 
-                    className="bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+                    className="bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-primary"
                 >
                     Voltar para Eventos
                 </button>

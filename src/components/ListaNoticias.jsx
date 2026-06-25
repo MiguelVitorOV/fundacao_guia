@@ -65,7 +65,7 @@ export function ListaNoticias(props) {
                                     e.stopPropagation()
                                     window.open(noticia.outros_links, '_blank', 'noopener,noreferrer')
                                 }}
-                                className="bg-blue-800 text-white px-3 py-1.5 text-xs font-medium rounded hover:bg-blue-700 transition-colors"
+                                className="bg-blue-800 text-white px-3 py-1.5 text-xs font-medium rounded hover:bg-primary transition-colors"
                             >
                                 Ler Mais
                             </button>

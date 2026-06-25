@@ -66,7 +66,7 @@ export const CreateModalExames = ({ isOpen, onClose, onConfirm, itemToEdit }) =>
                     <button type="button" onClick={onClose} className="px-5 py-2.5 rounded-lg font-semibold text-gray-700 hover:bg-gray-200 transition-colors">
                         Cancelar
                     </button>
-                    <button type="submit" form="exames-form" className="px-6 py-2.5 rounded-lg font-bold text-white bg-primary hover:bg-blue-900 transition-colors shadow-sm">
+                    <button type="submit" form="exames-form" className="px-6 py-2.5 rounded-lg font-bold text-white bg-primary hover:bg-blue-800 transition-colors shadow-sm">
                         {isEdit ? "Salvar Alterações" : "Criar Exame"}
                     </button>
                 </div>
