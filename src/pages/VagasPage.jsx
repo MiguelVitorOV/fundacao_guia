@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { useFilters } from "../hooks/useFilters";
 import { FilterBar } from "../components/FilterBar";
 import { ListaVagas } from "../components/ListaVagas";
+import { PopUp } from "../components/PopUp";
 
 export function VagasPage() {
     const keysToExtract = ["modalidade", "cidade", "tipo_vinculo", "horas"];
@@ -15,6 +17,11 @@ export function VagasPage() {
         handleSearch, 
         handleFilterChange 
     } = useFilters("/vagas", null, keysToExtract, "cargo");
+
+    const [showError, setShowError] = useState(false);
+    useEffect(() => {
+        if (error) setShowError(true);
+    }, [error]);
 
     const filtersConfig = [
         { name: "modalidade", placeholder: "Modalidade", options: filterOptions.modalidade },
@@ -62,6 +69,7 @@ export function VagasPage() {
             {error && <p>Erro ao carregar vagas.</p>}
             
             <ListaVagas vagas={filteredVagas} />
+            {showError && <PopUp erro="Erro ao carregar vagas." onClose={() => setShowError(false)} />}
         </div>
     );
 }

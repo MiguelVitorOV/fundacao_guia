@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { useFilters } from "../hooks/useFilters";
 import { FilterBar } from "../components/FilterBar";
 import { ListaEventos } from "../components/ListaEventos";
+import { PopUp } from "../components/PopUp";
 
 export function EventosPage() {
     const keysToExtract = ["status", "publico_alvo"];
@@ -15,6 +17,11 @@ export function EventosPage() {
         handleSearch, 
         handleFilterChange 
     } = useFilters("/eventos", null, keysToExtract, "titulo");
+
+    const [showError, setShowError] = useState(false);
+    useEffect(() => {
+        if (error) setShowError(true);
+    }, [error]);
 
     const filtersConfig = [
         { name: "status", placeholder: "Status", options: filterOptions.status },
@@ -55,6 +62,7 @@ export function EventosPage() {
             {error && <p>Erro ao carregar eventos.</p>}
             
             <ListaEventos eventos={filteredEventos} />
+            {showError && <PopUp erro="Erro ao carregar eventos." onClose={() => setShowError(false)} />}
         </div>
     );
 }

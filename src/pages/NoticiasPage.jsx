@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { useFilters } from "../hooks/useFilters";
 import { FilterBar } from "../components/FilterBar";
 import { ListaNoticias } from "../components/ListaNoticias";
+import { PopUp } from "../components/PopUp";
 
 export function NoticiasPage() {
     const keysToExtract = ["tags"];
@@ -15,6 +17,11 @@ export function NoticiasPage() {
         handleSearch, 
         handleFilterChange 
     } = useFilters("/noticias?recentes=900", null, keysToExtract, "titulo");
+
+    const [showError, setShowError] = useState(false);
+    useEffect(() => {
+        if (error) setShowError(true);
+    }, [error]);
 
     const filtersConfig = [
         { name: "tags", placeholder: "Categoria", options: filterOptions.tags }
@@ -48,6 +55,7 @@ export function NoticiasPage() {
             {error && <p>Erro ao carregar notícias.</p>}
 
             <ListaNoticias noticias={filteredNoticias} />
+            {showError && <PopUp erro="Erro ao carregar notícias." onClose={() => setShowError(false)} />}
         </div>
     );
 }

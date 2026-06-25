@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useGetData } from "../hooks/useGetData";
 import { parseList, parseBeneficios } from "../utils/formatter";
+import { PopUp } from "../components/PopUp";
 
 export function VagaDetalhesPage() {
     const { id } = useParams();
@@ -8,6 +10,11 @@ export function VagaDetalhesPage() {
     
     const [data, loading, error] = useGetData(`/vagas/${id}`);
     const vaga = data?.body?.vagas?.[0] || data?.body?.vaga || data?.body;
+
+    const [showError, setShowError] = useState(false);
+    useEffect(() => {
+        if (error) setShowError(true);
+    }, [error]);
 
     if (loading) {
         return (
@@ -144,6 +151,7 @@ export function VagaDetalhesPage() {
                     </div>
                 </div>
             </div>
+            {showError && <PopUp erro="Erro ao carregar detalhes da vaga." onClose={() => setShowError(false)} />}
         </div>
     );
 }

@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { useFilters } from "../hooks/useFilters";
 import { FilterBar } from "../components/FilterBar";
 import { ListaBlocos } from "../components/ListaBlocos";
+import { PopUp } from "../components/PopUp";
 
 export function LocalizacaoPage() {
     const { 
@@ -12,6 +14,11 @@ export function LocalizacaoPage() {
         handleSearch, 
         handleFilterChange 
     } = useFilters("/localizacao/overview", null, [], "exame");
+
+    const [showError, setShowError] = useState(false);
+    useEffect(() => {
+        if (error) setShowError(true);
+    }, [error]);
 
     const optionsMap = {
         bloco: new Set(),
@@ -85,6 +92,7 @@ export function LocalizacaoPage() {
             {error && <p className="text-center mt-10 text-red-600">Erro ao carregar localização.</p>}
 
             {!loading && !error && <ListaBlocos blocos={filteredBlocos} />}
+            {showError && <PopUp erro="Erro ao carregar dados de localização." onClose={() => setShowError(false)} />}
         </div>
     );
 }

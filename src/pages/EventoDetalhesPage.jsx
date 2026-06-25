@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useGetData } from "../hooks/useGetData";
 import { parseTags } from "../utils/formatter";
+import { PopUp } from "../components/PopUp";
 
 export function EventoDetalhesPage() {
     const { id } = useParams();
@@ -8,6 +10,11 @@ export function EventoDetalhesPage() {
     
     const [data, loading, error] = useGetData(`/eventos/${id}`);
     const evento = data?.body?.eventos?.[0] || data?.body?.evento || data?.body;
+
+    const [showError, setShowError] = useState(false);
+    useEffect(() => {
+        if (error) setShowError(true);
+    }, [error]);
 
     if (loading) {
         return (
@@ -155,6 +162,7 @@ export function EventoDetalhesPage() {
                     </div>
                 </div>
             </div>
+            {showError && <PopUp erro="Erro ao carregar detalhes do evento." onClose={() => setShowError(false)} />}
         </div>
     );
 }
