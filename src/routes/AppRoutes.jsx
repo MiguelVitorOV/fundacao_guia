@@ -5,6 +5,7 @@ import { NoticiasPage } from "../pages/NoticiasPage"
 import { VagasPage } from "../pages/VagasPage"
 import { EventosPage } from "../pages/EventosPage"
 import { LocalizacaoPage } from "../pages/LocalizacaoPage"
+import { VagaDetalhesPage } from "../pages/VagaDetalhesPage"
 
 import { LoginPage } from "../pages/LoginPage"
 
@@ -25,6 +26,7 @@ function AppRoutes() {
                 <Route index element={<HomePage />} />
                 <Route path="noticias" element={<NoticiasPage />} />
                 <Route path="vagas" element={<VagasPage />} />
+                <Route path="vagas/:id" element={<VagaDetalhesPage />} />
                 <Route path="eventos" element={<EventosPage />} />
                 <Route path="localizacao" element={<LocalizacaoPage />} />
             </Route>
