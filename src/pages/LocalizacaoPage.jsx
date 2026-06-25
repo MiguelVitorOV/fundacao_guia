@@ -1,5 +1,6 @@
 import { useFilters } from "../hooks/useFilters";
 import { FilterBar } from "../components/FilterBar";
+import { ListaBlocos } from "../components/ListaBlocos";
 
 export function LocalizacaoPage() {
     const { 
@@ -70,34 +71,8 @@ export function LocalizacaoPage() {
         }).filter(bloco => bloco.setores && bloco.setores.length > 0);
     }
 
-    const localizacaoList = filteredBlocos.map((bloco) => {
-        return (
-            <div key={bloco.id} className="p-5 border border-black w-fit rounded-md mb-5">
-                <h1 className="font-extrabold text-xl">{bloco.nome.toUpperCase()}</h1>
-                <div className="flex flex-col gap-5 p-5">
-                    {bloco.setores?.map((setor) => {
-                        return (
-                            <div key={setor.id} className="border border-black rounded-md w-max p-3">
-                                <h2 className="font-bold pb-3 text-center">{setor.nome}</h2>
-                                <ul>
-                                    {setor.exames?.map((exame) => {
-                                        return (
-                                            <li key={exame.id}>
-                                                <p>{exame.nome}</p>
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
-        )
-    });
-
     return (
-        <div className="px-36 py-10 bg-neutral-100">
+        <div className="px-36 py-10 bg-neutral-100 min-h-screen">
             <h1 className="text-blue-800 font-bold text-4xl text-center mb-2">Se Localize na FCV</h1>
             <p className="text-center text-text mb-8 w-2/3 mx-auto">Encontre facilmente o bloco ou setor desejado. Utilize a busca abaixo para saber onde seu exame será realizado com agilidade.</p>
             <FilterBar 
@@ -106,10 +81,10 @@ export function LocalizacaoPage() {
                 onFilterChange={handleFilterChange}
             />
 
-            {loading && <p>Carregando localização...</p>}
-            {error && <p>Erro ao carregar localização.</p>}
+            {loading && <p className="text-center mt-10 text-blue-800">Carregando localização...</p>}
+            {error && <p className="text-center mt-10 text-red-600">Erro ao carregar localização.</p>}
 
-            {localizacaoList}
+            {!loading && !error && <ListaBlocos blocos={filteredBlocos} />}
         </div>
     );
 }
