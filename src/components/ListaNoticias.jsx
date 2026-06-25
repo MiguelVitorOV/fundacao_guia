@@ -4,7 +4,7 @@ import { parseTags } from "../utils/formatter"
 export function ListaNoticias(props) {
     const [fetchedNoticias, fetchedLoading, fetchedError] = useGetData(props.noticias ? null : `/noticias?recentes=${props.recentes}`)
 
-    const IMAGEM_PLACEHOLDER = "/public/placeholder.png"
+    const IMAGEM_PLACEHOLDER = "/placeholder.png"
 
     const noticiasArray = props.noticias || (fetchedNoticias && fetchedNoticias.body.noticias) || []
     const isLoading = props.noticias ? false : fetchedLoading
@@ -27,14 +27,14 @@ export function ListaNoticias(props) {
         const tagsArray = parseTags(noticia.tags)
 
         return (
-            <div 
+            <div
                 key={noticia.id}
                 className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow group"
             >
                 <div className="overflow-hidden h-48 w-full bg-gray-100">
-                    <img 
-                        src={imageUrl} 
-                        alt={noticia.titulo} 
+                    <img
+                        src={imageUrl}
+                        alt={noticia.titulo}
                         className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
                         onError={(e) => { e.target.src = IMAGEM_PLACEHOLDER }}
                     />
@@ -53,14 +53,14 @@ export function ListaNoticias(props) {
                     {noticia.resumo && (
                         <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">{noticia.resumo}</p>
                     )}
-                    
+
                     <div className="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
                         <span className="text-xs text-gray-500">
                             {noticia.data_publicacao ? new Date(noticia.data_publicacao).toLocaleDateString('pt-BR') : ''}
                         </span>
-                        
+
                         {temLinkExterno && (
-                            <button 
+                            <button
                                 onClick={(e) => {
                                     e.stopPropagation()
                                     window.open(noticia.outros_links, '_blank', 'noopener,noreferrer')
@@ -75,12 +75,12 @@ export function ListaNoticias(props) {
             </div>
         )
     })
-    
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mt-8">
-           {isLoading && <p>Carregando...</p>}
-           {isError && <p>Erro ao carregar notícias.</p>}
-           {noticiasList}
+            {isLoading && <p>Carregando...</p>}
+            {isError && <p>Erro ao carregar notícias.</p>}
+            {noticiasList}
         </div>
     )
 }

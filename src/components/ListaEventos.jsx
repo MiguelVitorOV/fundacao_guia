@@ -5,7 +5,7 @@ import { NavigateButton } from "./NavigateButton"
 export function ListaEventos(props) {
     const [fetchedEventos, fetchedLoading, fetchedError] = useGetData(props.eventos ? null : `/eventos?recentes=${props.recentes}`)
 
-    const IMAGEM_PLACEHOLDER = "/public/placeholder.png"
+    const IMAGEM_PLACEHOLDER = "/placeholder.png"
 
     const eventosArray = props.eventos || (fetchedEventos && fetchedEventos.body?.eventos) || []
     const isLoading = props.eventos ? false : fetchedLoading
@@ -37,14 +37,14 @@ export function ListaEventos(props) {
         }
 
         return (
-            <div 
+            <div
                 key={evento.id}
                 className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow group"
             >
                 <div className="overflow-hidden h-48 w-full bg-gray-100 relative">
-                    <img 
-                        src={imageUrl} 
-                        alt={evento.titulo} 
+                    <img
+                        src={imageUrl}
+                        alt={evento.titulo}
                         className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
                         onError={(e) => { e.target.src = IMAGEM_PLACEHOLDER }}
                     />
@@ -56,7 +56,7 @@ export function ListaEventos(props) {
                         </div>
                     )}
                 </div>
-                
+
                 <div className="p-6 flex flex-col flex-grow">
                     {publicoAlvoArray.length > 0 && (
                         <div className="flex flex-wrap gap-2 mb-3">
@@ -67,14 +67,14 @@ export function ListaEventos(props) {
                             ))}
                         </div>
                     )}
-                    
+
                     <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{evento.titulo}</h3>
-                    
+
                     <div className="space-y-2 mb-6 flex-grow">
                         {(evento.data_inicio || evento.data) && (
                             <div className="flex items-center text-sm text-gray-600">
-                                <span className="mr-2">📅</span> 
-                                {new Date(evento.data_inicio || evento.data).toLocaleDateString('pt-BR')} 
+                                <span className="mr-2">📅</span>
+                                {new Date(evento.data_inicio || evento.data).toLocaleDateString('pt-BR')}
                                 {evento.horario && ` às ${evento.horario}`}
                             </div>
                         )}
@@ -84,7 +84,7 @@ export function ListaEventos(props) {
                             </div>
                         )}
                         {(evento.descricao || evento.resumo) && (
-                             <p className="text-gray-600 text-sm mt-3 line-clamp-2">{evento.descricao || evento.resumo}</p>
+                            <p className="text-gray-600 text-sm mt-3 line-clamp-2">{evento.descricao || evento.resumo}</p>
                         )}
                     </div>
 
@@ -95,12 +95,12 @@ export function ListaEventos(props) {
             </div>
         )
     })
-    
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mt-8">
-           {isLoading && <p className="text-blue-800 col-span-full">Carregando eventos...</p>}
-           {isError && <p className="text-red-600 col-span-full">Erro ao carregar eventos.</p>}
-           {eventosList.length > 0 ? eventosList : (!isLoading && !isError && <p className="col-span-full text-center text-gray-500">Nenhum evento encontrado.</p>)}
+            {isLoading && <p className="text-blue-800 col-span-full">Carregando eventos...</p>}
+            {isError && <p className="text-red-600 col-span-full">Erro ao carregar eventos.</p>}
+            {eventosList.length > 0 ? eventosList : (!isLoading && !isError && <p className="col-span-full text-center text-gray-500">Nenhum evento encontrado.</p>)}
         </div>
     )
 }

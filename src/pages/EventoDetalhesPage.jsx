@@ -7,7 +7,7 @@ import { PopUp } from "../components/PopUp";
 export function EventoDetalhesPage() {
     const { id } = useParams();
     const navigate = useNavigate();
-    
+
     const [data, loading, error] = useGetData(`/eventos/${id}`);
     const evento = data?.body?.eventos?.[0] || data?.body?.evento || data?.body;
 
@@ -28,8 +28,8 @@ export function EventoDetalhesPage() {
         return (
             <div className="px-36 py-20 bg-neutral-100 min-h-[60vh] flex flex-col justify-center items-center gap-4">
                 <p className="text-xl text-red-600">Erro ao carregar o evento ou evento não encontrado.</p>
-                <button 
-                    onClick={() => navigate('/eventos')} 
+                <button
+                    onClick={() => navigate('/eventos')}
                     className="bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-primary"
                 >
                     Voltar para Eventos
@@ -38,7 +38,7 @@ export function EventoDetalhesPage() {
         );
     }
 
-    const IMAGEM_PLACEHOLDER = "/public/placeholder.png";
+    const IMAGEM_PLACEHOLDER = "/placeholder.png";
     let imageUrl = IMAGEM_PLACEHOLDER;
     if (evento.imagens) {
         if (Array.isArray(evento.imagens) && evento.imagens.length > 0) {
@@ -74,23 +74,23 @@ export function EventoDetalhesPage() {
             <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                 {imageUrl !== IMAGEM_PLACEHOLDER && (
                     <div className="w-full h-64 md:h-80 overflow-hidden bg-gray-100">
-                        <img 
-                            src={imageUrl} 
-                            alt={evento.titulo} 
+                        <img
+                            src={imageUrl}
+                            alt={evento.titulo}
                             className="w-full h-full object-cover"
                             onError={(e) => { e.target.style.display = 'none'; }}
                         />
                     </div>
                 )}
-                
+
                 <div className="bg-blue-800 p-8 text-white relative">
-                    <button 
+                    <button
                         onClick={() => navigate('/eventos')}
                         className="text-white/80 hover:text-white mb-6 flex items-center text-sm font-medium transition-colors"
                     >
                         ← Voltar para listagem
                     </button>
-                    
+
                     {evento.status && (
                         <div className="absolute top-8 right-8">
                             <span className={`text-sm font-bold px-4 py-2 rounded-full shadow-sm ${statusColor}`}>
@@ -98,9 +98,9 @@ export function EventoDetalhesPage() {
                             </span>
                         </div>
                     )}
-                    
+
                     <h1 className="text-3xl font-bold pr-32">{evento.titulo}</h1>
-                    
+
                     {publicoAlvoArray.length > 0 && (
                         <div className="mt-4 flex flex-wrap gap-2">
                             {publicoAlvoArray.map((publico, index) => (
@@ -110,18 +110,18 @@ export function EventoDetalhesPage() {
                             ))}
                         </div>
                     )}
-                    
+
                     <div className="mt-6 flex flex-wrap gap-6 text-sm text-blue-100">
                         {(evento.data_inicio || evento.data) && (
                             <div className="flex items-center">
-                                <span className="mr-2">📅</span> 
+                                <span className="mr-2">📅</span>
                                 Início: {formatData(evento.data_inicio || evento.data)}
                                 {evento.horario && ` às ${evento.horario}`}
                             </div>
                         )}
                         {evento.data_fim && (
                             <div className="flex items-center">
-                                <span className="mr-2">⏳</span> 
+                                <span className="mr-2">⏳</span>
                                 Fim: {formatData(evento.data_fim)}
                             </div>
                         )}
@@ -150,7 +150,7 @@ export function EventoDetalhesPage() {
 
                     <div className="mt-10 pt-6 border-t border-gray-100 flex justify-center">
                         {evento.link || evento.outros_links ? (
-                            <button 
+                            <button
                                 onClick={() => window.open(evento.link || evento.outros_links, '_blank', 'noopener,noreferrer')}
                                 className="bg-green-600 text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-green-700 transition-colors shadow-md hover:shadow-lg"
                             >
