@@ -1,4 +1,6 @@
 import { useForm } from "../../hooks/useForm"
+import { X } from "lucide-react"
+
 export const CreateModalNoticias = ({ isOpen, onClose, onConfirm, itemToEdit }) => {
     if (!isOpen) return null
 
@@ -33,77 +35,74 @@ export const CreateModalNoticias = ({ isOpen, onClose, onConfirm, itemToEdit }) 
     }
 
     const isEdit = !!itemToEdit
+    const inputStyle = "w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-800/50 focus:border-blue-800 transition-all text-sm"
+    const labelStyle = "block text-sm font-semibold text-gray-700 mb-1"
 
     return (
-        <div className="fixed inset-0 z-50 flex bg-black/50 items-center justify-center">
-            <div className="flex flex-col justify-between p-5 bg-white items-center gap-5">
-                <h1>{isEdit ? `Editar notícia ${itemToEdit?.titulo}` : "Criar nova notícia"}</h1>
-                <form onSubmit={handleSubmit} className="flex flex-wrap justify-center gap-5">
-                    <input
-                        name="noticia_id_fundacao"
-                        value={form.noticia_id_fundacao}
-                        onChange={handleChange}
-                        placeholder="Digite o id da notícia no site da fundação"
-                        type="number"
-                        min={1}
-                        required
-                    />
-                    <input
-                        name="titulo"
-                        value={form.titulo}
-                        onChange={handleChange}
-                        placeholder="Digite o título da notícia"
-                        type="text"
-                        required
-                    />
-                    <textarea
-                        name="resumo"
-                        value={form.resumo}
-                        onChange={handleChange}
-                        placeholder="Digite o resumo da notícia"
-                        type="text"
-                    />
-                    <textarea
-                        name="conteudo"
-                        value={form.conteudo}
-                        onChange={handleChange}
-                        placeholder="Digite o conteúdo da notícia"
-                        required
-                    />
-                    <input
-                        name="data_publicacao"
-                        value={form.data_publicacao}
-                        onChange={handleChange}
-                        placeholder="Digite a data de publicação"
-                        type="date"
-                        required
-                    />
-                    <input
-                        name="tags"
-                        value={form.tags}
-                        onChange={handleChange}
-                        placeholder="Digite as tags"
-                        type="text"
-                    />
-                    <input
-                        name="imagens"
-                        value={form.imagens}
-                        onChange={handleChange}
-                        placeholder="Digite a URL da imagem"
-                        type="text"
-                    />
-                    <input
-                        name="outros_links"
-                        value={form.outros_links}
-                        onChange={handleChange}
-                        placeholder="Digite links adicionais"
-                    />
+        <div className="fixed inset-0 z-50 flex bg-black/60 backdrop-blur-sm items-center justify-center p-4">
+            <div className="flex flex-col bg-white rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                    <div>
+                        <h2 className="text-xl font-bold text-gray-900">{isEdit ? "Editar Notícia" : "Nova Notícia"}</h2>
+                        <p className="text-sm text-gray-500 mt-0.5">{isEdit ? itemToEdit?.titulo : "Preencha os dados abaixo para cadastrar"}</p>
+                    </div>
+                    <button type="button" onClick={onClose} className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+                        <X size={20} strokeWidth={2.5} />
+                    </button>
+                </div>
 
-                    <div className="flex gap-5 justify-center">
-                        <button type="submit">Confirmar</button>
-                        <button onClick={onClose}>Cancelar</button>
+                <form id="noticias-form" onSubmit={handleSubmit} className="flex flex-col max-h-[65vh] overflow-y-auto p-6 gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div className="col-span-1">
+                            <label className={labelStyle}>ID na Fundação</label>
+                            <input name="noticia_id_fundacao" value={form.noticia_id_fundacao} onChange={handleChange} placeholder="Ex: 1234" type="number" min={1} required className={inputStyle} />
+                        </div>
+                        <div className="col-span-1">
+                            <label className={labelStyle}>Data de Publicação</label>
+                            <input name="data_publicacao" value={form.data_publicacao} onChange={handleChange} type="date" required className={inputStyle} />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label className={labelStyle}>Título</label>
+                        <input name="titulo" value={form.titulo} onChange={handleChange} placeholder="Título principal da notícia" type="text" required className={inputStyle} />
+                    </div>
+
+                    <div>
+                        <label className={labelStyle}>Resumo</label>
+                        <textarea name="resumo" value={form.resumo} onChange={handleChange} placeholder="Breve descrição" className={`${inputStyle} min-h-[80px] resize-y`} />
+                    </div>
+
+                    <div>
+                        <label className={labelStyle}>Conteúdo Completo</label>
+                        <textarea name="conteudo" value={form.conteudo} onChange={handleChange} placeholder="Texto detalhado da notícia" required className={`${inputStyle} min-h-[120px] resize-y`} />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div className="col-span-1">
+                            <label className={labelStyle}>Tags (separadas por vírgula)</label>
+                            <input name="tags" value={form.tags} onChange={handleChange} placeholder="Ex: saúde, educação, tecnologia" type="text" className={inputStyle} />
+                        </div>
+                        <div className="col-span-1">
+                            <label className={labelStyle}>Imagem URL</label>
+                            <input name="imagens" value={form.imagens} onChange={handleChange} placeholder="https://site.com/imagem.jpg" type="text" className={inputStyle} />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label className={labelStyle}>Links Externos</label>
+                        <input name="outros_links" value={form.outros_links} onChange={handleChange} placeholder="Links adicionais" className={inputStyle} />
                     </div>
                 </form>
+
+                <div className="flex gap-3 p-5 bg-gray-50 border-t border-gray-100 justify-end">
+                    <button type="button" onClick={onClose} className="px-5 py-2.5 rounded-lg font-semibold text-gray-700 hover:bg-gray-200 transition-colors">
+                        Cancelar
+                    </button>
+                    <button type="submit" form="noticias-form" className="px-6 py-2.5 rounded-lg font-bold text-white bg-primary hover:bg-blue-900 transition-colors shadow-sm">
+                        {isEdit ? "Salvar Alterações" : "Criar Notícia"}
+                    </button>
+                </div>
             </div>
         </div>
     )
