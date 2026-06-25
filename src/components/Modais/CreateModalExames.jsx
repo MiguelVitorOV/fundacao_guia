@@ -50,8 +50,11 @@ export const CreateModalExames = ({ isOpen, onClose, onConfirm, itemToEdit }) =>
                         required
                     >
                         <option value="" disabled>Selecione o local do exame</option>
-                        <option value="loc-002"> loc-002</option>
-                        <option value="loc-006">loc-006</option>
+                        <option value="loc-001">Laboratório Central</option>
+                        <option value="loc-002">Centro de Endocrinologia</option>
+                        <option value="loc-003">Laboratório de Urina</option>
+                        <option value="loc-006">Laboratório Central</option>
+                        <option value="loc-005">Centro de Endocrinologia</option>
                     </select>
 
                     <div className="flex gap-5 justify-center">

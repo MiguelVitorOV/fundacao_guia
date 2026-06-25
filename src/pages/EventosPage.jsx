@@ -2,7 +2,7 @@ import { useFilters } from "../hooks/useFilters";
 import { FilterBar } from "../components/FilterBar";
 
 export function EventosPage() {
-    const keysToExtract = ["status", "tags"];
+    const keysToExtract = ["status", "publico_alvo"];
     
     const { 
         loading, 
@@ -17,7 +17,7 @@ export function EventosPage() {
 
     const filtersConfig = [
         { name: "status", placeholder: "Status", options: filterOptions.status },
-        { name: "tags", placeholder: "Público Alvo", options: filterOptions.tags }
+        { name: "publico_alvo", placeholder: "Público Alvo", options: filterOptions.publico_alvo }
     ];
 
     let filteredEventos = unfilteredData?.body?.eventos || [];
@@ -34,15 +34,17 @@ export function EventosPage() {
         );
     }
 
-    if (filterValues.tags) {
+    if (filterValues.publico_alvo) {
         filteredEventos = filteredEventos.filter(evento => 
-            String(evento.tags).includes(filterValues.tags) || String(evento.publico_alvo).includes(filterValues.tags)
+            String(evento.publico_alvo).includes(filterValues.publico_alvo) || String(evento.publico_alvo).includes(filterValues.publico_alvo)
         );
     }
 
     const eventosList = filteredEventos.map((evento) => {
         return <li key={evento.id}>{evento.titulo} - {evento.status}</li>
     });
+    console.log(filterOptions)
+    console.log(filterValues)
 
     return (
         <>
