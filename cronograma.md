@@ -3,8 +3,6 @@
     1.1 Cards de Informações
     1.2 Página de detalhes
         1.2.1 Vagas
-        1.2.2 Notícias
-        1.2.3 Localize
         1.2.4 Eventos
 2. Estilização Admin
     2.0 Login Page
