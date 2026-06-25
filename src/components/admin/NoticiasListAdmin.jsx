@@ -20,7 +20,7 @@ export function NoticiasListAdmin({ noticias }) {
                             {noticia.imagemUrl ? (
                                 <img src={noticia.imagemUrl} alt={noticia.titulo} className="w-full h-full object-cover" />
                             ) : (
-                                <ImageIcon className="text-gray-400" size={32} strokeWidth={1.5} />
+                                <img src="/placeholder.png" alt="Sem imagem" className="w-full h-full object-cover opacity-80" />
                             )}
                         </div>
                         <div className="flex flex-col justify-center h-full pt-1">
