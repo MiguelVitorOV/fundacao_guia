@@ -7,6 +7,7 @@ import { EventosPage } from "../pages/EventosPage"
 import { EventoDetalhesPage } from "../pages/EventoDetalhesPage"
 import { LocalizacaoPage } from "../pages/LocalizacaoPage"
 import { VagaDetalhesPage } from "../pages/VagaDetalhesPage"
+import { NotFoundPage } from "../pages/NotFoundPage"
 
 import { LoginPage } from "../pages/LoginPage"
 
@@ -31,6 +32,7 @@ function AppRoutes() {
                 <Route path="eventos" element={<EventosPage />} />
                 <Route path="eventos/:id" element={<EventoDetalhesPage />} />
                 <Route path="localizacao" element={<LocalizacaoPage />} />
+                <Route path="*" element={<NotFoundPage />} />
             </Route>
 
             <Route path="/login" element={<LoginPage />} />
