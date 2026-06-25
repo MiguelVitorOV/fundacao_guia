@@ -53,7 +53,7 @@ export function FooterGlobal() {
                 <p>© Desenvolvido por</p>
                 <p className="text-white">The Corredores</p>
                 <nav className="ml-auto">
-                    <button onClick={() => {navigate("/login")}}>Área Administrativa</button>
+                    <Link to="/login">Área Administrativa</Link>
                 </nav>
             </div>
         </footer>
