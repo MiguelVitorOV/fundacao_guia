@@ -7,6 +7,7 @@ export const useGetData = (url) => {
     const [error, setError] = useState("")
 
     const getData = async () => {
+        if (!url) return;
         setLoading(true)
         api.get(url).then((res) => {
             setLoading(false)
